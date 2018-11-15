@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ua.help.agro.core.domain.Report;
 import ua.help.agro.core.repository.ReportRepository;
 
+import java.util.List;
+
 @Service
 public class ReportService {
 
@@ -17,5 +19,9 @@ public class ReportService {
 
     public void save(Report report) {
         reportRepository.save(report);
+    }
+
+    public List<Report> findAll() {
+        return reportRepository.findAll();
     }
 }
