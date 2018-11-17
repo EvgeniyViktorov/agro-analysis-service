@@ -22,6 +22,10 @@ public class ReportService {
     }
 
     public List<Report> findAll() {
-        return reportRepository.findAll();
+        return (List<Report>) reportRepository.findAll();
+    }
+
+    public List<Report> findNonApproved() {
+        return reportRepository.findAllByIsAcceptedFalse();
     }
 }

@@ -23,12 +23,17 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    @GetMapping(value = "/reports", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "reports/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Report>> getAllReports() {
         return new ResponseEntity<>(reportService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/report/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "reports/pending", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Report>> getPending() {
+        return new ResponseEntity<>(reportService.findNonApproved(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "report/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Report> add(@RequestBody Report report) {
         reportService.save(report);
         return new ResponseEntity<>(HttpStatus.OK);

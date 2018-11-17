@@ -1,9 +1,9 @@
 package ua.help.agro.core.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -16,21 +16,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Report {
-
-    public Report(PlantType plantType, Integer stemLength, Integer stemThickness, Integer branchesAmount, Integer leafLength, Integer leafWidth, String leafColor, Integer fruitsAmount, Integer fruitLength, Integer fruitWidth, Integer sweeteness, Boolean isAccepted) {
-        this.plantType = plantType;
-        this.stemLength = stemLength;
-        this.stemThickness = stemThickness;
-        this.branchesAmount = branchesAmount;
-        this.leafLength = leafLength;
-        this.leafWidth = leafWidth;
-        this.leafColor = leafColor;
-        this.fruitsAmount = fruitsAmount;
-        this.fruitLength = fruitLength;
-        this.fruitWidth = fruitWidth;
-        this.sweeteness = sweeteness;
-        this.isAccepted = isAccepted;
-    }
 
     @Id
     @GeneratedValue
@@ -59,4 +44,20 @@ public class Report {
     private Integer sweeteness;
 
     private Boolean isAccepted;
+
+
+    public Report(PlantType plantType, Integer stemLength, Integer stemThickness, Integer branchesAmount, Integer leafLength, Integer leafWidth, String leafColor, Integer fruitsAmount, Integer fruitLength, Integer fruitWidth, Integer sweeteness, Boolean isAccepted) {
+        this.plantType = plantType;
+        this.stemLength = stemLength;
+        this.stemThickness = stemThickness;
+        this.branchesAmount = branchesAmount;
+        this.leafLength = leafLength;
+        this.leafWidth = leafWidth;
+        this.leafColor = leafColor;
+        this.fruitsAmount = fruitsAmount;
+        this.fruitLength = fruitLength;
+        this.fruitWidth = fruitWidth;
+        this.sweeteness = sweeteness;
+        this.isAccepted = isAccepted;
+    }
 }
