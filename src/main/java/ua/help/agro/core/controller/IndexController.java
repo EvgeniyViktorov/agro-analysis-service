@@ -3,10 +3,10 @@ package ua.help.agro.core.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/")
 public class IndexController {
 
-    @GetMapping(value = "/")
+    @GetMapping()
     public String index() {
         return "index";
     }
