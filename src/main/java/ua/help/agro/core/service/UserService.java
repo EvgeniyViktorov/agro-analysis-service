@@ -1,0 +1,21 @@
+package ua.help.agro.core.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ua.help.agro.core.domain.User;
+import ua.help.agro.core.repository.UserRepository;
+
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
+    }
+}

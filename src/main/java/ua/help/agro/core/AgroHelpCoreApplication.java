@@ -4,32 +4,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.stereotype.Component;
 import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.Report;
+import ua.help.agro.core.domain.User;
 import ua.help.agro.core.service.ReportService;
+import ua.help.agro.core.service.UserService;
 
 @SpringBootApplication
+@EnableOAuth2Sso
 public class AgroHelpCoreApplication {
 
-	@Autowired
-	private ReportService reportService;
+    @Autowired
+    private ReportService reportService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(AgroHelpCoreApplication.class, args);
-	}
+    @Autowired
+    private UserService userService;
 
-	@Component
-	public class AddSomeData implements CommandLineRunner {
+    public static void main(String[] args) {
+        SpringApplication.run(AgroHelpCoreApplication.class, args);
+    }
 
-		@Override
-		public void run(String... args) throws Exception {
-			reportService.save(new Report(PlantType.BUCKWHEAT, 12, 15, 20, 25, 30, "#123456", 1, 1, 1, 1, false));
-			reportService.save(new Report(PlantType.RICE, 13, 15, 20, 25, 30, "#11", 1, 1, 1, 1, false));
-			reportService.save(new Report(PlantType.WHEAT, 14, 15, 20, 25, 30, "#1213456", 1, 1, 1, 1, true));
-			reportService.save(new Report(PlantType.RICE, 15, 15, 20, 25, 30, "#12312456", 1, 1, 1, 1, false));
-			reportService.save(new Report(PlantType.BUCKWHEAT, 16, 15, 20, 25, 30, "#123563456", 1, 1, 1, 1, false));
-			reportService.save(new Report(PlantType.WHEAT, 17, 15, 20, 25, 30, "#10023456", 1, 1, 1, 1, false));
-		}
-	}
+    @Component
+    public class AddSomeData implements CommandLineRunner {
+
+        @Override
+        public void run(String... args) throws Exception {
+            User user1 = new User("Evgeniy Viktorov", "email@evgenitv.com");
+            User user2 = new User("Some OtherGuys", "email@evgenitv.com");
+            userService.save(user1);
+            userService.save(user2);
+
+            reportService.save(new Report(PlantType.BUCKWHEAT, 12, 15, 20, 25, 30, "#123456", 1, 1, 1, 1, false, user1));
+            reportService.save(new Report(PlantType.RICE, 13, 15, 20, 25, 30, "#11", 1, 1, 1, 1, false, user1));
+            reportService.save(new Report(PlantType.WHEAT, 14, 15, 20, 25, 30, "#1213456", 1, 1, 1, 1, true, user2));
+            reportService.save(new Report(PlantType.RICE, 15, 15, 20, 25, 30, "#12312456", 1, 1, 1, 1, false, user2));
+            reportService.save(new Report(PlantType.BUCKWHEAT, 16, 15, 20, 25, 30, "#123563456", 1, 1, 1, 1, false, user1));
+            reportService.save(new Report(PlantType.WHEAT, 17, 15, 20, 25, 30, "#10023456", 1, 1, 1, 1, false, user1));
+        }
+    }
 }

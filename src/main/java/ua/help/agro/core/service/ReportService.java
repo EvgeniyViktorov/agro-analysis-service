@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ReportService {
 
-    private ReportRepository reportRepository;
+    private final ReportRepository reportRepository;
 
     @Autowired
     public ReportService(ReportRepository reportRepository) {
