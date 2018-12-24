@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ua.help.agro.core.domain.User;
 import ua.help.agro.core.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -17,5 +19,13 @@ public class UserService {
 
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.getUsersByEmailContaining(email);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

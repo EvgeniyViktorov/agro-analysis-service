@@ -4,16 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+//import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.stereotype.Component;
 import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.Report;
 import ua.help.agro.core.domain.User;
+import ua.help.agro.core.domain.UserRole;
 import ua.help.agro.core.service.ReportService;
 import ua.help.agro.core.service.UserService;
 
 @SpringBootApplication
-@EnableOAuth2Sso
+//@EnableOAuth2Sso
 public class AgroHelpCoreApplication {
 
     @Autowired
@@ -31,8 +32,11 @@ public class AgroHelpCoreApplication {
 
         @Override
         public void run(String... args) throws Exception {
-            User user1 = new User("Evgeniy Viktorov", "email@evgenitv.com");
-            User user2 = new User("Some OtherGuys", "email@evgenitv.com");
+            User user1 = new User("Evgeniy", "Viktorov", "email@evgenitv.com");
+            user1.getUserRoles().add(UserRole.ADMINISTRATOR);
+            User user2 = new User("Some", "OtherGuys", "lmaolol@evgenitv.com");
+            user2.getUserRoles().add(UserRole.SUPERVISOR);
+            user2.setIsVerified(true);
             userService.save(user1);
             userService.save(user2);
 
