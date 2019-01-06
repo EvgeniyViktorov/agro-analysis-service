@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.stereotype.Component;
 import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.Report;
@@ -14,7 +15,7 @@ import ua.help.agro.core.service.ReportService;
 import ua.help.agro.core.service.UserService;
 
 @SpringBootApplication
-//@EnableOAuth2Sso
+@EnableOAuth2Sso
 public class AgroHelpCoreApplication {
 
     @Autowired
