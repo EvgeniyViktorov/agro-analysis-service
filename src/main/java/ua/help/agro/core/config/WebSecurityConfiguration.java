@@ -5,28 +5,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import ua.help.agro.core.security.JwtAuthenticationTokenFilter;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Configuration
 @EnableOAuth2Sso
@@ -37,7 +27,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private ResourceServerProperties resourceServerProperties;
 
     @Autowired
-    public void setOauth2ClientContext(OAuth2ClientContext oauth2ClientContext) {
+    public void setOauth2ClientContext(@Qualifier("oauth2ClientContext") OAuth2ClientContext oauth2ClientContext) {
         this.oauth2ClientContext = oauth2ClientContext;
     }
 
@@ -50,17 +40,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void setResourceServerProperties(ResourceServerProperties resourceServerProperties) {
         this.resourceServerProperties = resourceServerProperties;
     }
-
-    @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        JwtAuthenticationTokenFilter authenticationTokenFilter = new JwtAuthenticationTokenFilter();
-        authenticationTokenFilter.setAuthenticationManager(authenticationManager());
-        authenticationTokenFilter.setAuthenticationSuccessHandler((request, response, authentication) -> {
-
-        });
-        return authenticationTokenFilter;
-    }
-
 
     /* This method is for overriding the default AuthenticationManagerBuilder.
      We can specify how the user details are kept in the application. It may
@@ -83,6 +62,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf()
+                .and()
                 // Starts authorizing configurations.
                 .authorizeRequests()
                 // Ignore the "/" and "/index.html"
@@ -99,13 +80,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 // Setting the filter for the URL "/login".
-                .addFilterAt(filter(), BasicAuthenticationFilter.class)
-
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-        http
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-
+                .addFilterAt(filter(), BasicAuthenticationFilter.class);
     }
 
     /*This method for creating filter for OAuth authentication.*/
