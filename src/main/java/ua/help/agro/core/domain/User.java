@@ -38,6 +38,8 @@ public class User {
 
     private Boolean isVerified = false;
 
+    private Boolean isNightMode = false;
+
     @ElementCollection(targetClass = UserRole.class)
     private List<UserRole> userRoles = new ArrayList<>();
 

@@ -45,7 +45,7 @@ public class Report {
 
     private Integer fruitWidth;
 
-    private Integer sweeteness;
+    private Integer sweetness;
 
     private Boolean isAccepted = false;
 
@@ -53,7 +53,7 @@ public class Report {
     private User submitedBy;
 
 
-    public Report(PlantType plantType, Integer stemLength, Integer stemThickness, Integer branchesAmount, Integer leafLength, Integer leafWidth, String leafColor, Integer fruitsAmount, Integer fruitLength, Integer fruitWidth, Integer sweeteness, Boolean isAccepted, User submitedBy) {
+    public Report(PlantType plantType, Integer stemLength, Integer stemThickness, Integer branchesAmount, Integer leafLength, Integer leafWidth, String leafColor, Integer fruitsAmount, Integer fruitLength, Integer fruitWidth, Integer sweetness, Boolean isAccepted, User submitedBy) {
         this.plantType = plantType;
         this.stemLength = stemLength;
         this.stemThickness = stemThickness;
@@ -64,7 +64,7 @@ public class Report {
         this.fruitsAmount = fruitsAmount;
         this.fruitLength = fruitLength;
         this.fruitWidth = fruitWidth;
-        this.sweeteness = sweeteness;
+        this.sweetness = sweetness;
         this.isAccepted = isAccepted;
         this.submitedBy = submitedBy;
     }
