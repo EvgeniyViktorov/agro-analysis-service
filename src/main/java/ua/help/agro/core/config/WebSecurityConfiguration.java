@@ -62,15 +62,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .and()
+                .csrf().disable()
                 // Starts authorizing configurations.
                 .authorizeRequests()
                 // Ignore the "/" and "/index.html"
                 .antMatchers("/", "/**.html", "/**.js").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/**").permitAll()
-                .antMatchers("*/**").permitAll()
                 // Authenticate all remaining URLs.
                 .anyRequest().authenticated()
                 .and()
