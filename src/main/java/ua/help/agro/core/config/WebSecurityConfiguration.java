@@ -70,6 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/**.html", "/**.js").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/**").permitAll()
+                .antMatchers("*/**").permitAll()
                 // Authenticate all remaining URLs.
                 .anyRequest().authenticated()
                 .and()
