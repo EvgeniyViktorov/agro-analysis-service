@@ -69,7 +69,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // Ignore the "/" and "/index.html"
                 .antMatchers("/", "/**.html", "/**.js").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                .antMatchers("/**").permitAll()
+                .antMatchers("/**").permitAll()
                 // Authenticate all remaining URLs.
                 .anyRequest().authenticated()
                 .and()
