@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ua.help.agro.core.domain.User;
 import ua.help.agro.core.dto.Email;
@@ -19,8 +20,8 @@ import ua.help.agro.core.service.UserService;
 @Slf4j
 @RestController
 @RequestMapping(value = "/users",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class UserController {
 
     private final UserService userService;
@@ -68,8 +69,9 @@ public class UserController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public User getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
     }
 
 }

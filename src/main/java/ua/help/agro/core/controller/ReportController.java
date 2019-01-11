@@ -16,8 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/reports",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ReportController {
 
     private ReportService reportService;
