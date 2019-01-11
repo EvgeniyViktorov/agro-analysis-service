@@ -22,8 +22,8 @@ import ua.help.agro.core.service.UserService;
 @Slf4j
 @RestController
 @RequestMapping(value = "/users",
-        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     private final UserService userService;
@@ -39,10 +39,7 @@ public class UserController {
             if (!userByEmail.getIsVerified()) {
                 return new ResponseEntity<>(new ResponseMessage("User with email " + email.getEmail() + " is not verified. Please contact administrator."), HttpStatus.UNAUTHORIZED);
             }
-            HttpHeaders headers = new HttpHeaders();
-            headers.set(HttpHeaders.CONTENT_LENGTH, String.valueOf(new ObjectMapper().writeValueAsString(userByEmail).length()));
-//            return ResponseEntity.ok().header(headers).body(userByEmail);
-            return new ResponseEntity<>(userByEmail, headers, HttpStatus.OK);
+            return new ResponseEntity<>(userByEmail, HttpStatus.OK);
         }
         return new ResponseEntity<>(new ResponseMessage("User with email " + email.getEmail() + " does not exist. Please, consider registration in application."), HttpStatus.NOT_FOUND);
     }
