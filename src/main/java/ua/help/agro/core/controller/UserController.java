@@ -1,6 +1,9 @@
 package ua.help.agro.core.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +22,8 @@ import ua.help.agro.core.service.UserService;
 @Slf4j
 @RestController
 @RequestMapping(value = "/users",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class UserController {
 
     private final UserService userService;
@@ -30,13 +33,16 @@ public class UserController {
     }
 
     @PostMapping("/find")
-    public ResponseEntity<?> getUserWithEmail(@RequestBody Email email) {
+    public ResponseEntity<?> getUserWithEmail(@RequestBody Email email) throws JsonProcessingException {
         User userByEmail = userService.getUserByEmail(email.getEmail());
         if (userByEmail != null) {
             if (!userByEmail.getIsVerified()) {
                 return new ResponseEntity<>(new ResponseMessage("User with email " + email.getEmail() + " is not verified. Please contact administrator."), HttpStatus.UNAUTHORIZED);
             }
-            return new ResponseEntity<>(userByEmail, HttpStatus.OK);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set(HttpHeaders.CONTENT_LENGTH, String.valueOf(new ObjectMapper().writeValueAsString(userByEmail).length()));
+//            return ResponseEntity.ok().header(headers).body(userByEmail);
+            return new ResponseEntity<>(userByEmail, headers, HttpStatus.OK);
         }
         return new ResponseEntity<>(new ResponseMessage("User with email " + email.getEmail() + " does not exist. Please, consider registration in application."), HttpStatus.NOT_FOUND);
     }
