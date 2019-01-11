@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ua.help.agro.core.domain.User;
 import ua.help.agro.core.dto.Email;
+import ua.help.agro.core.dto.ResponseMessage;
 import ua.help.agro.core.service.UserService;
 
 @Slf4j
@@ -30,7 +31,14 @@ public class UserController {
 
     @PostMapping("/find")
     public ResponseEntity<?> getUserWithEmail(@RequestBody Email email) {
-        return new ResponseEntity<>(userService.getUserByEmail(email.getEmail()), HttpStatus.OK);
+        User userByEmail = userService.getUserByEmail(email.getEmail());
+        if (userByEmail != null) {
+            if (!userByEmail.getIsVerified()) {
+                return new ResponseEntity<>(new ResponseMessage("User with email " + email.getEmail() + " is not verified. Please contact administrator."), HttpStatus.UNAUTHORIZED);
+            }
+            return new ResponseEntity<>(userByEmail, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ResponseMessage("User with email " + email.getEmail() + " does not exist. Please, consider registration in application."), HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/validate")
