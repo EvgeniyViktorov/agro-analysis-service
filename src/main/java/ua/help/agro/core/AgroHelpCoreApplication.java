@@ -38,8 +38,15 @@ public class AgroHelpCoreApplication {
             User user2 = new User("Some", "OtherGuys", "lmaolol@evgenitv.com");
             user2.getUserRoles().add(UserRole.SUPERVISOR);
             user2.setIsVerified(true);
+            User user3 = new User("Marina", "ADIN", "mariina.sou@gmail.com");
+            user3.getUserRoles().add(UserRole.USER);
+            user3.setIsVerified(true);
+            User user4 = new User("Marina", "DVA", "forrte@gmail.com");
+            user4.getUserRoles().add(UserRole.USER);
             userService.save(user1);
             userService.save(user2);
+            userService.save(user3);
+            userService.save(user4);
 
             reportService.save(new Report(PlantType.BUCKWHEAT, 12, 15, 20, 25, 30, "#123456", 1, 1, 1, 1, false, user1));
             reportService.save(new Report(PlantType.RICE, 13, 15, 20, 25, 30, "#11", 1, 1, 1, 1, false, user1));
