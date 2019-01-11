@@ -19,8 +19,8 @@ import ua.help.agro.core.service.UserService;
 @Slf4j
 @RestController
 @RequestMapping(value = "/users",
-        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     private final UserService userService;
@@ -48,11 +48,11 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity addUser(@RequestBody User user) {
-        try {
-            userService.save(user);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        User userByEmail = userService.getUserByEmail(user.getEmail());
+        if (userByEmail == null) {
+            return new ResponseEntity<>(new ResponseMessage("User with email " + user.getEmail() + " exists in database."), HttpStatus.OK);
+        } else userService.save(user);
+
         return new ResponseEntity(HttpStatus.OK);
     }
 
