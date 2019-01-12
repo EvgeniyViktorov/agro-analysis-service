@@ -36,9 +36,9 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    private Boolean isVerified = false;
+    private Boolean isVerified;
 
-    private Boolean isNightMode = false;
+    private Boolean isNightMode;
 
     @ElementCollection(targetClass = UserRole.class)
     private List<UserRole> userRoles = new ArrayList<>();
@@ -47,5 +47,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.isNightMode = false;
+        this.isVerified = false;
     }
 }
