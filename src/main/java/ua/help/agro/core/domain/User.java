@@ -25,6 +25,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, updatable = false)
     private Long id;
 
     @Column(nullable = false)
@@ -41,7 +42,7 @@ public class User {
     private Boolean isNightMode;
 
     @ElementCollection(targetClass = UserRole.class)
-    private List<UserRole> userRoles = new ArrayList<>();
+    private List<UserRole> userRoles;
 
     public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -49,5 +50,6 @@ public class User {
         this.email = email;
         this.isNightMode = false;
         this.isVerified = false;
+        this.userRoles = new ArrayList<>();
     }
 }

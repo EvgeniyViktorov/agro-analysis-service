@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.help.agro.core.domain.User;
 import ua.help.agro.core.dto.Email;
 import ua.help.agro.core.dto.ResponseMessage;
+import ua.help.agro.core.dto.UserDto;
 import ua.help.agro.core.service.UserService;
 
 @Slf4j
@@ -63,15 +65,16 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateUser(@RequestBody User user) {
-        userService.save(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> updateUser(@RequestBody UserDto userDto) {
+        User userById = userService.getUserById(userDto.getId());
+        userService.save(UserDto.convertToUser(userDto, userById));
+        userById = userService.getUserById(userDto.getId());
+        return new ResponseEntity<>(userById, HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public User getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
 }
