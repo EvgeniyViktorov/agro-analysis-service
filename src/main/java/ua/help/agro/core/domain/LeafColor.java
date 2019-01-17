@@ -10,37 +10,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import java.time.LocalDate;
 
-@Entity
+@Entity(name = "leaf_color")
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Field {
+public class LeafColor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-
-    private Integer number;
-
-    @OneToOne
-    private User responsible;
-
-    private LocalDate sowingDate;
-
-    private String plant;
-
-    @OneToOne
-    private PlantType plantType;
-
-    @OneToOne
-    private User creator;
-
-    private Long approximatePlantsAmount;
-
-    private String googleMapsSrc;
+    private String value;
 }

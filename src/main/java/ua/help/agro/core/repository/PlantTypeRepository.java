@@ -2,9 +2,8 @@ package ua.help.agro.core.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ua.help.agro.core.domain.Form;
+import ua.help.agro.core.domain.PlantType;
 
 @Repository
-public interface FormRepository extends JpaRepository<Form, Long> {
-
+public interface PlantTypeRepository extends JpaRepository<PlantType, Long> {
 }

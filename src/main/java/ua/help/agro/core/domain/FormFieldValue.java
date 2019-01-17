@@ -6,52 +6,45 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import java.time.LocalDate;
-import java.util.List;
 
-@Entity(name = "form")
+@Entity(name = "form_field_value")
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Form {
+public class FormFieldValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    private String formName;
-
     @OneToOne
     private PlantType plantType;
 
+    private String stemLength;
+
+    private String stemThickness;
+
+    private Integer branchesAmount;
+
+    private String leafLength;
+
+    private String leafWidth;
+
     @OneToOne
-    private Field field;
+    private LeafColor leafColor;
 
-    private LocalDate dueDate;
+    private Integer fruitsAmount;
 
-    private LocalDate dateUpdated;
+    private String fruitLength;
+
+    private Integer sweetness;
 
     private String note;
-
-    private Boolean isAccepted;
-
-    private Boolean isCompleted;
-
-    @OneToOne
-    private FormFieldValue formFieldValues;
-
-    @ElementCollection(targetClass = FormFieldStructure.class)
-    private List<FormFieldStructure> formFieldStructures;
-
-    @OneToOne
-    private User submittedBy;
 }
