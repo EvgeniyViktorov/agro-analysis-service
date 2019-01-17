@@ -52,7 +52,7 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity addUser(@RequestBody User user) {
         User userByEmail = userService.getUserByEmail(user.getEmail());
-        if (userByEmail == null) {
+        if (userByEmail != null) {
             return new ResponseEntity<>(new ResponseMessage("User with email " + user.getEmail() + " exists in database."), HttpStatus.OK);
         } else userService.save(user);
 

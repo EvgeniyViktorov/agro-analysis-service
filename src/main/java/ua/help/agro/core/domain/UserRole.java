@@ -13,5 +13,4 @@ public enum UserRole {
     UserRole(int i) {
         this.id = i;
     }
-
 }
