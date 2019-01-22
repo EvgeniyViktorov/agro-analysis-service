@@ -23,7 +23,8 @@ public class FormFieldStructureDto {
     private String value;
 
     public static FormFieldStructure fromDto(FormFieldStructureDto formFieldStructureDto, FormFieldStructure formFieldStructure) {
-        if (formFieldStructureDto == null) return null;
+        if (formFieldStructureDto == null) return formFieldStructure;
+        if (formFieldStructureDto.getId() != null) formFieldStructure.setId(formFieldStructureDto.getId());
         if (formFieldStructureDto.getFieldName() != null) formFieldStructure.setFieldName(formFieldStructureDto.getFieldName());
         if (formFieldStructureDto.getFieldNameShown() != null) formFieldStructure.setFieldNameShown(formFieldStructureDto.getFieldNameShown());
         if (formFieldStructureDto.getFieldType() != null) formFieldStructure.setFieldType(formFieldStructureDto.getFieldType());

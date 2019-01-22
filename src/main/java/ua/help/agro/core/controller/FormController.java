@@ -10,42 +10,41 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.help.agro.core.dto.FieldDto;
-import ua.help.agro.core.service.FieldService;
+import ua.help.agro.core.dto.FormDto;
+import ua.help.agro.core.service.FormService;
 
 @RestController
-@RequestMapping(value = "/field",
+@RequestMapping(value = "/form",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class FieldController {
+public class FormController {
+    private final FormService formService;
 
-    private final FieldService fieldService;
-
-    public FieldController(FieldService fieldService) {
-        this.fieldService = fieldService;
+    public FormController(FormService formService) {
+        this.formService = formService;
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> findAll() {
-        return new ResponseEntity<>(fieldService.findAll(), HttpStatus.OK);
+    public ResponseEntity<?> all() {
+        return new ResponseEntity<>(formService.findAll(), HttpStatus.OK);
     }
-
+    
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody FieldDto fieldDto) {
-        fieldService.save(FieldDto.fromDto(fieldDto, null));
+    public ResponseEntity<?> add(@RequestBody FormDto formDto) {
+        formService.save(FormDto.fromDto(formDto, null));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody FieldDto fieldDto) {
-        fieldService.save(FieldDto.fromDto(fieldDto, fieldService.getFieldById(fieldDto.getId())));
-        fieldService.getFieldById(fieldDto.getId());
+    public ResponseEntity<?> update(@RequestBody FormDto formDto) {
+        formService.save(FormDto.fromDto(formDto, formService.getFormById(formDto.getId())));
+        formService.getFormById(formDto.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(@RequestBody FieldDto fieldDto) {
-        fieldService.delete(fieldDto.getId());
+    public ResponseEntity<?> delete(@RequestBody FormDto formDto) {
+        formService.delete(formDto.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

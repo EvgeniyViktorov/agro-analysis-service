@@ -26,4 +26,8 @@ public class FormService {
         if (formRepository.findById(id).isPresent()) return formRepository.findById(id).get();
         return null;
     }
+
+    public void delete(Long id) {
+        formRepository.deleteById(id);
+    }
 }

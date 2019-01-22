@@ -41,8 +41,6 @@ public class AgroHelpCoreApplication {
             userService.save(user2);
             userService.save(user3);
             userService.save(user4);
-
-
         }
     }
 }

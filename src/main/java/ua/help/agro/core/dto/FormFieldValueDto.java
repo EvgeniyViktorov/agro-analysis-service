@@ -34,7 +34,8 @@ public class FormFieldValueDto {
 
     public static FormFieldValue fromDto(FormFieldValueDto formFieldValueDto, FormFieldValue formFieldValue) {
         if (formFieldValue == null) formFieldValue = new FormFieldValue();
-        if (formFieldValueDto == null) return null;
+        if (formFieldValueDto == null) return formFieldValue;
+        if (formFieldValueDto.getId() != null) formFieldValue.setId(formFieldValueDto.getId());
         if (formFieldValueDto.getPlantType() != null) formFieldValue.setPlantType(formFieldValueDto.getPlantType());
         if (formFieldValueDto.getStemLength() != null) formFieldValue.setStemLength(formFieldValueDto.getStemLength());
         if (formFieldValueDto.getStemThickness() != null) formFieldValue.setStemThickness(formFieldValueDto.getStemThickness());
