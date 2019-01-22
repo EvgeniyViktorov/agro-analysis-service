@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 import ua.help.agro.core.domain.FormFieldValue;
 
 @Repository
-public interface FormFieldValueRepository extends JpaRepository<FormFieldValue, Long> {}
+public interface FormFieldValueRepository extends JpaRepository<FormFieldValue, Long> {
+}

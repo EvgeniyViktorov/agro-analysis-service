@@ -39,7 +39,8 @@ public class FieldDto {
         if (fieldDto.getPlant() != null) field.setPlant(fieldDto.getPlant());
         if (fieldDto.getPlantType() != null) field.setPlantType(fieldDto.getPlantType());
         if (fieldDto.getCreator() != null) field.setCreator(fieldDto.getCreator());
-        if (fieldDto.getApproximatePlantsAmount() != null) field.setApproximatePlantsAmount(fieldDto.getApproximatePlantsAmount());
+        if (fieldDto.getApproximatePlantsAmount() != null)
+            field.setApproximatePlantsAmount(fieldDto.getApproximatePlantsAmount());
         if (fieldDto.getGoogleMapsSrc() != null) field.setGoogleMapsSrc(fieldDto.getGoogleMapsSrc());
         return field;
     }

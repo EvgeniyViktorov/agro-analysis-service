@@ -28,7 +28,7 @@ public class FormController {
     public ResponseEntity<?> all() {
         return new ResponseEntity<>(formService.findAll(), HttpStatus.OK);
     }
-    
+
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody FormDto formDto) {
         formService.save(FormDto.fromDto(formDto, null));

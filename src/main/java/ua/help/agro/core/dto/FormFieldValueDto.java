@@ -38,13 +38,17 @@ public class FormFieldValueDto {
         if (formFieldValueDto.getId() != null) formFieldValue.setId(formFieldValueDto.getId());
         if (formFieldValueDto.getPlantType() != null) formFieldValue.setPlantType(formFieldValueDto.getPlantType());
         if (formFieldValueDto.getStemLength() != null) formFieldValue.setStemLength(formFieldValueDto.getStemLength());
-        if (formFieldValueDto.getStemThickness() != null) formFieldValue.setStemThickness(formFieldValueDto.getStemThickness());
-        if (formFieldValueDto.getBranchesAmount() != null) formFieldValue.setBranchesAmount(formFieldValueDto.getBranchesAmount());
+        if (formFieldValueDto.getStemThickness() != null)
+            formFieldValue.setStemThickness(formFieldValueDto.getStemThickness());
+        if (formFieldValueDto.getBranchesAmount() != null)
+            formFieldValue.setBranchesAmount(formFieldValueDto.getBranchesAmount());
         if (formFieldValueDto.getLeafLength() != null) formFieldValue.setLeafLength(formFieldValueDto.getLeafLength());
         if (formFieldValueDto.getLeafWidth() != null) formFieldValue.setLeafWidth(formFieldValueDto.getLeafWidth());
         if (formFieldValueDto.getLeafColor() != null) formFieldValue.setLeafColor(formFieldValueDto.getLeafColor());
-        if (formFieldValueDto.getFruitsAmount() != null) formFieldValue.setFruitsAmount(formFieldValueDto.getFruitsAmount());
-        if (formFieldValueDto.getFruitLength() != null) formFieldValue.setFruitLength(formFieldValueDto.getFruitLength());
+        if (formFieldValueDto.getFruitsAmount() != null)
+            formFieldValue.setFruitsAmount(formFieldValueDto.getFruitsAmount());
+        if (formFieldValueDto.getFruitLength() != null)
+            formFieldValue.setFruitLength(formFieldValueDto.getFruitLength());
         if (formFieldValueDto.getSweetness() != null) formFieldValue.setSweetness(formFieldValueDto.getSweetness());
         if (formFieldValueDto.getNote() != null) formFieldValue.setNote(formFieldValueDto.getNote());
         return formFieldValue;

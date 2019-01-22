@@ -25,10 +25,14 @@ public class FormFieldStructureDto {
     public static FormFieldStructure fromDto(FormFieldStructureDto formFieldStructureDto, FormFieldStructure formFieldStructure) {
         if (formFieldStructureDto == null) return formFieldStructure;
         if (formFieldStructureDto.getId() != null) formFieldStructure.setId(formFieldStructureDto.getId());
-        if (formFieldStructureDto.getFieldName() != null) formFieldStructure.setFieldName(formFieldStructureDto.getFieldName());
-        if (formFieldStructureDto.getFieldNameShown() != null) formFieldStructure.setFieldNameShown(formFieldStructureDto.getFieldNameShown());
-        if (formFieldStructureDto.getFieldType() != null) formFieldStructure.setFieldType(formFieldStructureDto.getFieldType());
-        if (formFieldStructureDto.getIsRequired() != null) formFieldStructure.setIsRequired(formFieldStructureDto.getIsRequired());
+        if (formFieldStructureDto.getFieldName() != null)
+            formFieldStructure.setFieldName(formFieldStructureDto.getFieldName());
+        if (formFieldStructureDto.getFieldNameShown() != null)
+            formFieldStructure.setFieldNameShown(formFieldStructureDto.getFieldNameShown());
+        if (formFieldStructureDto.getFieldType() != null)
+            formFieldStructure.setFieldType(formFieldStructureDto.getFieldType());
+        if (formFieldStructureDto.getIsRequired() != null)
+            formFieldStructure.setIsRequired(formFieldStructureDto.getIsRequired());
         if (formFieldStructureDto.getValue() != null) formFieldStructure.setValue(formFieldStructureDto.getValue());
         return formFieldStructure;
     }

@@ -1,5 +1,8 @@
 package ua.help.agro.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -26,13 +29,19 @@ public class FormFieldValue {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-    @OneToOne private PlantType plantType;
+    @OneToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private PlantType plantType;
     private String stemLength;
     private String stemThickness;
     private Integer branchesAmount;
     private String leafLength;
     private String leafWidth;
-    @OneToOne private LeafColor leafColor;
+    @OneToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private LeafColor leafColor;
     private Integer fruitsAmount;
     private String fruitLength;
     private Integer sweetness;

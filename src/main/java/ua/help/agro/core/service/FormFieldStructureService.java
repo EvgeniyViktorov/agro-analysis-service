@@ -19,7 +19,8 @@ public class FormFieldStructureService {
     }
 
     public FormFieldStructure getFormFieldStructureById(Long id) {
-        if (formFieldStructureRepository.findById(id).isPresent()) return formFieldStructureRepository.findById(id).get();
+        if (formFieldStructureRepository.findById(id).isPresent())
+            return formFieldStructureRepository.findById(id).get();
         return null;
     }
 
