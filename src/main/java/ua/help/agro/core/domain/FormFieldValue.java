@@ -1,6 +1,7 @@
 package ua.help.agro.core.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,39 +15,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity(name = "form_field_value")
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class FormFieldValue {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-
-    @OneToOne
-    private PlantType plantType;
-
+    @OneToOne private PlantType plantType;
     private String stemLength;
-
     private String stemThickness;
-
     private Integer branchesAmount;
-
     private String leafLength;
-
     private String leafWidth;
-
-    @OneToOne
-    private LeafColor leafColor;
-
+    @OneToOne private LeafColor leafColor;
     private Integer fruitsAmount;
-
     private String fruitLength;
-
     private Integer sweetness;
-
     private String note;
 }

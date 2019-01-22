@@ -15,4 +15,13 @@ public class FormFieldValueService {
     public void save(FormFieldValue formFieldValue) {
         formFieldValueRepository.save(formFieldValue);
     }
+
+    public FormFieldValue getFormFieldValueById(Long id) {
+        if (formFieldValueRepository.findById(id).isPresent()) return formFieldValueRepository.findById(id).get();
+        return null;
+    }
+
+    public void delete(Long id) {
+        formFieldValueRepository.deleteById(id);
+    }
 }

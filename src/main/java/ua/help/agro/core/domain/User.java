@@ -1,6 +1,7 @@
 package ua.help.agro.core.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Builder
 @Table(name = "users")
 @Getter
 @Setter
@@ -26,25 +28,18 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @ToString
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-
     @Column(nullable = false)
     private String firstName;
-
     @Column(nullable = false)
     private String lastName;
-
     @Column(nullable = false)
     private String email;
-
     private Boolean isVerified;
-
     private Boolean isNightMode;
-
     @ElementCollection(targetClass = UserRole.class)
     private List<UserRole> userRoles;
 

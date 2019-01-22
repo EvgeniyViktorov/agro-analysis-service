@@ -21,4 +21,9 @@ public class FormService {
     public List<Form> findAll() {
         return formRepository.findAll();
     }
+
+    public Form getFormById(Long id) {
+        if (formRepository.findById(id).isPresent()) return formRepository.findById(id).get();
+        return null;
+    }
 }

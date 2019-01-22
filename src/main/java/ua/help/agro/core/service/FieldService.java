@@ -17,4 +17,17 @@ public class FieldService {
     public List<Field> findAll() {
         return fieldRepository.findAll();
     }
+
+    public void save(Field field) {
+        fieldRepository.save(field);
+    }
+
+    public Field getFieldById(Long id) {
+        if (fieldRepository.findById(id).isPresent()) return fieldRepository.findById(id).get();
+        return null;
+    }
+
+    public void delete(Long id) {
+        fieldRepository.deleteById(id);
+    }
 }

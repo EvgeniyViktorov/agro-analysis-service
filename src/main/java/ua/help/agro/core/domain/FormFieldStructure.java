@@ -1,6 +1,7 @@
 package ua.help.agro.core.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,13 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "form_field_structure")
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class FormFieldStructure {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
