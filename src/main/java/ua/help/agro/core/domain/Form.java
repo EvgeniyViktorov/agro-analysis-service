@@ -34,28 +34,16 @@ public class Form {
     private Long id;
     private String formName;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private PlantType plantType;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private Field field;
     private LocalDate dueDate;
     private LocalDate dateUpdated;
     private String note;
     private Boolean isAccepted;
     private Boolean isCompleted;
-    @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private FormFieldValue formFieldValues;
     @ElementCollection(targetClass = FormFieldStructure.class)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private List<FormFieldStructure> formFieldStructures;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private User submittedBy;
 }

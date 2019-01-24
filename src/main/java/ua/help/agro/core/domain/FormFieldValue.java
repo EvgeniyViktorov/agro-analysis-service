@@ -30,8 +30,6 @@ public class FormFieldValue {
     @Column(nullable = false, updatable = false)
     private Long id;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private PlantType plantType;
     private String stemLength;
     private String stemThickness;
@@ -39,8 +37,6 @@ public class FormFieldValue {
     private String leafLength;
     private String leafWidth;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private LeafColor leafColor;
     private Integer fruitsAmount;
     private String fruitLength;

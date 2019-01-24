@@ -195,7 +195,6 @@ public class AgroHelpCoreApplication {
                     .note("This is random shitty note")
                     .isAccepted(true)
                     .isCompleted(false)
-                    .formFieldValues(formFieldValue1)
                     .formFieldStructures(formFieldStructures)
                     .submittedBy(user3)
                     .build();
@@ -209,7 +208,6 @@ public class AgroHelpCoreApplication {
                     .note("This is random shitty note")
                     .isAccepted(false)
                     .isCompleted(false)
-                    .formFieldValues(formFieldValue2)
                     .formFieldStructures(formFieldStructures)
                     .submittedBy(user2)
                     .build();

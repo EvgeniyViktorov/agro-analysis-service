@@ -32,18 +32,12 @@ public class Field {
     private Long id;
     private Integer number;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private User responsible;
     private LocalDate sowingDate;
     private String plant;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private PlantType plantType;
     @OneToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private User creator;
     private Long approximatePlantsAmount;
     private String googleMapsSrc;

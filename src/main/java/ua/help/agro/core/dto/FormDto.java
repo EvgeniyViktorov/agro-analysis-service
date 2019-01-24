@@ -48,7 +48,6 @@ public class FormDto {
         if (formDto.getNote() != null) form.setNote(formDto.getNote());
         if (formDto.getIsAccepted() != null) form.setIsAccepted(formDto.getIsAccepted());
         if (formDto.getIsCompleted() != null) form.setIsCompleted(formDto.getIsCompleted());
-        if (formDto.getFormFieldValues() != null) form.setFormFieldValues(formDto.getFormFieldValues());
         if (formDto.getFormFieldStructures() != null) form.setFormFieldStructures(formDto.getFormFieldStructures());
         if (formDto.getSubmittedBy() != null) form.setSubmittedBy(formDto.getSubmittedBy());
         return form;
