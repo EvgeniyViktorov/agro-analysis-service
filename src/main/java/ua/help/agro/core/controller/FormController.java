@@ -10,8 +10,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ua.help.agro.core.domain.Form;
+import ua.help.agro.core.domain.FormStructure;
+import ua.help.agro.core.domain.FormValue;
 import ua.help.agro.core.dto.FormDto;
+import ua.help.agro.core.dto.FormValueDto;
+import ua.help.agro.core.dto.ResponseMessage;
 import ua.help.agro.core.service.FormService;
+import ua.help.agro.core.service.FormStructureService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/form",
@@ -19,9 +27,11 @@ import ua.help.agro.core.service.FormService;
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class FormController {
     private final FormService formService;
+    private final FormStructureService formStructureService;
 
-    public FormController(FormService formService) {
+    public FormController(FormService formService, FormStructureService formStructureService) {
         this.formService = formService;
+        this.formStructureService = formStructureService;
     }
 
     @GetMapping("/all")
@@ -31,8 +41,7 @@ public class FormController {
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody FormDto formDto) {
-        formService.save(FormDto.fromDto(formDto, null));
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(formService.saveAndFlush(FormDto.fromDto(formDto, null)), HttpStatus.OK);
     }
 
     @PutMapping("/update")
@@ -45,6 +54,25 @@ public class FormController {
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(@RequestBody FormDto formDto) {
         formService.delete(formDto.getId());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/assign")
+    public ResponseEntity<?> assign(@RequestBody FormValueDto formValueDto) {
+        List<FormStructure> structures;
+        Form form = formService.getFormById(formValueDto.getFormId());
+        try {
+            structures = form.getFormStructures();
+        } catch (NullPointerException e) {
+            return new ResponseEntity<>(new ResponseMessage("Form with id " + formValueDto.getFormId() + " does not exist in database. Contact admin."), HttpStatus.NOT_FOUND);
+        }
+        FormValue formValue = FormValueDto.fromDto(formValueDto, null);
+        List<FormStructure> assignedStructures = formService.assign(structures, formValue);
+        for (FormStructure formStructure : assignedStructures) {
+            formStructureService.save(formStructure);
+        }
+        form.setFormStructures(assignedStructures);
+        formService.save(form);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

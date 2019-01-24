@@ -8,8 +8,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import ua.help.agro.core.domain.Field;
 import ua.help.agro.core.domain.Form;
-import ua.help.agro.core.domain.FormFieldStructure;
-import ua.help.agro.core.domain.FormFieldValue;
+import ua.help.agro.core.domain.FormStructure;
+import ua.help.agro.core.domain.FormValue;
 import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.User;
 
@@ -32,8 +32,8 @@ public class FormDto {
     private String note;
     private Boolean isAccepted;
     private Boolean isCompleted;
-    private FormFieldValue formFieldValues;
-    private List<FormFieldStructure> formFieldStructures;
+    private FormValue formValues;
+    private List<FormStructure> formStructures;
     private User submittedBy;
 
     public static Form fromDto(FormDto formDto, Form form) {
@@ -48,7 +48,8 @@ public class FormDto {
         if (formDto.getNote() != null) form.setNote(formDto.getNote());
         if (formDto.getIsAccepted() != null) form.setIsAccepted(formDto.getIsAccepted());
         if (formDto.getIsCompleted() != null) form.setIsCompleted(formDto.getIsCompleted());
-        if (formDto.getFormFieldStructures() != null) form.setFormFieldStructures(formDto.getFormFieldStructures());
+        if (formDto.getFormValues() != null) form.setFormValues(formDto.getFormValues());
+        if (formDto.getFormStructures() != null) form.setFormStructures(formDto.getFormStructures());
         if (formDto.getSubmittedBy() != null) form.setSubmittedBy(formDto.getSubmittedBy());
         return form;
     }

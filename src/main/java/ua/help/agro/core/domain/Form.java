@@ -1,8 +1,5 @@
 package ua.help.agro.core.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -42,8 +39,10 @@ public class Form {
     private String note;
     private Boolean isAccepted;
     private Boolean isCompleted;
-    @ElementCollection(targetClass = FormFieldStructure.class)
-    private List<FormFieldStructure> formFieldStructures;
+    @OneToOne
+    private FormValue formValues;
+    @ElementCollection(targetClass = FormStructure.class)
+    private List<FormStructure> formStructures;
     @OneToOne
     private User submittedBy;
 }

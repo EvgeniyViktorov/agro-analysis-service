@@ -7,15 +7,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 import ua.help.agro.core.domain.Field;
 import ua.help.agro.core.domain.Form;
-import ua.help.agro.core.domain.FormFieldStructure;
-import ua.help.agro.core.domain.FormFieldValue;
+import ua.help.agro.core.domain.FormStructure;
+import ua.help.agro.core.domain.FormValue;
 import ua.help.agro.core.domain.LeafColor;
 import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.User;
 import ua.help.agro.core.domain.UserRole;
 import ua.help.agro.core.service.FieldService;
-import ua.help.agro.core.service.FormFieldStructureService;
-import ua.help.agro.core.service.FormFieldValueService;
+import ua.help.agro.core.service.FormStructureService;
+import ua.help.agro.core.service.FormValueService;
 import ua.help.agro.core.service.FormService;
 import ua.help.agro.core.service.LeafColorService;
 import ua.help.agro.core.service.PlantTypeService;
@@ -40,9 +40,9 @@ public class AgroHelpCoreApplication {
     @Autowired
     private FieldService fieldService;
     @Autowired
-    private FormFieldValueService formFieldValueService;
+    private FormValueService formValueService;
     @Autowired
-    private FormFieldStructureService formFieldStructureService;
+    private FormStructureService formStructureService;
     @Autowired
     private LeafColorService leafColorService;
 
@@ -83,7 +83,7 @@ public class AgroHelpCoreApplication {
                     .plantType(plantType1)
                     .creator(user1)
                     .approximatePlantsAmount(20000L)
-                    .googleMapsSrc("Some google maps src link..").build();
+                    .googleMapsSrc("https://www.google.com/maps/d/u/0/embed?mid=1i8YYFhUJYKf3zNqOhBlHr1iuCyM4wgPd").build();
 
             Field field2 = Field.builder()
                     .number(100002)
@@ -93,7 +93,7 @@ public class AgroHelpCoreApplication {
                     .plantType(plantType2)
                     .creator(user4)
                     .approximatePlantsAmount(200140L)
-                    .googleMapsSrc("Some google maps src link.. Second one.").build();
+                    .googleMapsSrc("https://www.google.com/maps/d/u/0/embed?mid=1i8YYFhUJYKf3zNqOhBlHr1iuCyM4wgPd").build();
             fieldService.save(field1);
             fieldService.save(field2);
 
@@ -103,7 +103,7 @@ public class AgroHelpCoreApplication {
                     .value("1111ANOTHER HEX VALUE").build();
             leafColorService.save(leafColor1);
             leafColorService.save(leafColor2);
-            FormFieldValue formFieldValue1 = FormFieldValue.builder()
+            FormValue formValue1 = FormValue.builder()
                     .plantType(plantType1)
                     .stemLength("1")
                     .stemThickness("1")
@@ -115,7 +115,7 @@ public class AgroHelpCoreApplication {
                     .fruitLength("1")
                     .sweetness(1)
                     .note("11Note for form field value 1").build();
-            FormFieldValue formFieldValue2 = FormFieldValue.builder()
+            FormValue formValue2 = FormValue.builder()
                     .plantType(plantType1)
                     .stemLength("2")
                     .stemThickness("2")
@@ -127,63 +127,63 @@ public class AgroHelpCoreApplication {
                     .fruitLength("2")
                     .sweetness(2)
                     .note("22Note for form field value 2").build();
-            formFieldValueService.save(formFieldValue1);
-            formFieldValueService.save(formFieldValue2);
-            FormFieldStructure formFieldStructure1 = FormFieldStructure.builder()
+            formValueService.save(formValue1);
+            formValueService.save(formValue2);
+            FormStructure formStructure1 = FormStructure.builder()
                     .fieldName("plant_type")
                     .fieldNameShown("Plant Type")
                     .fieldType("String")
                     .isRequired(true)
                     .value("1").build();
-            FormFieldStructure formFieldStructure2 = FormFieldStructure.builder()
+            FormStructure formStructure2 = FormStructure.builder()
                     .fieldName("stem length")
                     .fieldNameShown("Stem length")
                     .fieldType("String")
                     .isRequired(true)
                     .value("1").build();
-            FormFieldStructure formFieldStructure3 = FormFieldStructure.builder()
+            FormStructure formStructure3 = FormStructure.builder()
                     .fieldName("whatever")
                     .fieldNameShown("Plant Type")
                     .fieldType("String")
                     .isRequired(true)
                     .value("2").build();
-            FormFieldStructure formFieldStructure4 = FormFieldStructure.builder()
+            FormStructure formStructure4 = FormStructure.builder()
                     .fieldName("etc")
                     .fieldNameShown("Plant Type")
                     .fieldType("String")
                     .isRequired(true)
                     .value("2").build();
-            FormFieldStructure formFieldStructure5 = FormFieldStructure.builder()
+            FormStructure formStructure5 = FormStructure.builder()
                     .fieldName("noone cares for now")
                     .fieldNameShown("Plant Type")
                     .fieldType("String")
                     .isRequired(true)
                     .value("2").build();
-            FormFieldStructure formFieldStructure6 = FormFieldStructure.builder()
+            FormStructure formStructure6 = FormStructure.builder()
                     .fieldName("dunno")
                     .fieldNameShown("Plant Type")
                     .fieldType("String")
                     .isRequired(true)
                     .value("2").build();
-            FormFieldStructure formFieldStructure7 = FormFieldStructure.builder()
+            FormStructure formStructure7 = FormStructure.builder()
                     .fieldName("youwot")
                     .fieldNameShown("Plant Type")
                     .fieldType("String")
                     .isRequired(true)
                     .value("2").build();
-            formFieldStructureService.save(formFieldStructure1);
-            formFieldStructureService.save(formFieldStructure2);
-            formFieldStructureService.save(formFieldStructure3);
-            formFieldStructureService.save(formFieldStructure4);
-            formFieldStructureService.save(formFieldStructure5);
-            formFieldStructureService.save(formFieldStructure6);
-            formFieldStructureService.save(formFieldStructure7);
+            formStructureService.save(formStructure1);
+            formStructureService.save(formStructure2);
+            formStructureService.save(formStructure3);
+            formStructureService.save(formStructure4);
+            formStructureService.save(formStructure5);
+            formStructureService.save(formStructure6);
+            formStructureService.save(formStructure7);
 
-            List<FormFieldStructure> formFieldStructures = new ArrayList<>();
-            formFieldStructures.add(formFieldStructure1);
-            formFieldStructures.add(formFieldStructure2);
-            formFieldStructures.add(formFieldStructure3);
-            formFieldStructures.add(formFieldStructure4);
+            List<FormStructure> formStructures = new ArrayList<>();
+            formStructures.add(formStructure1);
+            formStructures.add(formStructure2);
+            formStructures.add(formStructure3);
+            formStructures.add(formStructure4);
 
 
             Form form1 = Form.builder()
@@ -195,7 +195,8 @@ public class AgroHelpCoreApplication {
                     .note("This is random shitty note")
                     .isAccepted(true)
                     .isCompleted(false)
-                    .formFieldStructures(formFieldStructures)
+                    .formValues(formValue1)
+                    .formStructures(formStructures)
                     .submittedBy(user3)
                     .build();
             formService.save(form1);
@@ -208,13 +209,14 @@ public class AgroHelpCoreApplication {
                     .note("This is random shitty note")
                     .isAccepted(false)
                     .isCompleted(false)
-                    .formFieldStructures(formFieldStructures)
+                    .formValues(formValue2)
+                    .formStructures(formStructures)
                     .submittedBy(user2)
                     .build();
-            formFieldStructures.clear();
-            formFieldStructures.add(formFieldStructure5);
-            formFieldStructures.add(formFieldStructure6);
-            formFieldStructures.add(formFieldStructure7);
+            formStructures.clear();
+            formStructures.add(formStructure5);
+            formStructures.add(formStructure6);
+            formStructures.add(formStructure7);
 
             formService.save(form2);
         }
