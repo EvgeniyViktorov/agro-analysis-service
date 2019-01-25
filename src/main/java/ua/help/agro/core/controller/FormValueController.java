@@ -1,23 +1,11 @@
 package ua.help.agro.core.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.help.agro.core.domain.Form;
-import ua.help.agro.core.domain.FormStructure;
-import ua.help.agro.core.domain.FormValue;
-import ua.help.agro.core.dto.FormValueDto;
-import ua.help.agro.core.dto.ResponseMessage;
 import ua.help.agro.core.service.FormService;
 import ua.help.agro.core.service.FormStructureService;
-import ua.help.agro.core.service.FormValueService;
-
-import java.util.List;
 
 @Slf4j
 @RestController

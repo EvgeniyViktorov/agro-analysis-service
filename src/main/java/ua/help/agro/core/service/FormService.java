@@ -42,47 +42,47 @@ public class FormService {
     public List<FormStructure> assign(List<FormStructure> formStructures, FormValue formValue) {
         if (formValue.getPlantType() != null) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("plant_type")) e.setValue(formValue.getPlantType().getName());
+                if (e.getFieldName().equals("plantType")) e.setValue(formValue.getPlantType().getName());
             });
         }
         if (formValue.getStemLength() != null && !formValue.getStemLength().equals("")) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("stem_length")) e.setValue(formValue.getStemLength());
+                if (e.getFieldName().equals("stemLength")) e.setValue(formValue.getStemLength());
             });
         }
         if (formValue.getStemThickness() != null && !formValue.getStemThickness().equals("")) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("stem_thickness")) e.setValue(formValue.getStemThickness());
+                if (e.getFieldName().equals("stemThickness")) e.setValue(formValue.getStemThickness());
             });
         }
         if (formValue.getBranchesAmount() != null && formValue.getBranchesAmount() != 0) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("branches_amount")) e.setValue(formValue.getBranchesAmount().toString());
+                if (e.getFieldName().equals("branchesAmount")) e.setValue(formValue.getBranchesAmount().toString());
             });
         }
         if (formValue.getLeafLength() != null && !formValue.getLeafLength().equals("")) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("leaf_length")) e.setValue(formValue.getLeafLength());
+                if (e.getFieldName().equals("leafLength")) e.setValue(formValue.getLeafLength());
             });
         }
         if (formValue.getLeafWidth() != null && !formValue.getLeafWidth().equals("")) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("leaf_width")) e.setValue(formValue.getLeafWidth());
+                if (e.getFieldName().equals("leafWidth")) e.setValue(formValue.getLeafWidth());
             });
         }
         if (formValue.getLeafColor() != null) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("leaf_color")) e.setValue(formValue.getLeafColor().toString());
+                if (e.getFieldName().equals("leafColor")) e.setValue(formValue.getLeafColor().toString());
             });
         }
         if (formValue.getFruitsAmount() != null && formValue.getFruitsAmount() != 0) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("fruits_amount")) e.setValue(formValue.getFruitsAmount().toString());
+                if (e.getFieldName().equals("fruitsAmount")) e.setValue(formValue.getFruitsAmount().toString());
             });
         }
         if (formValue.getFruitLength() != null && !formValue.getFruitLength().equals("")) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("fruits_length")) e.setValue(formValue.getFruitLength());
+                if (e.getFieldName().equals("fruitLength")) e.setValue(formValue.getFruitLength());
             });
         }
         if (formValue.getSweetness() != null && formValue.getSweetness() != 0) {

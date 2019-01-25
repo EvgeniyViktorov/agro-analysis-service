@@ -14,9 +14,9 @@ import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.User;
 import ua.help.agro.core.domain.UserRole;
 import ua.help.agro.core.service.FieldService;
+import ua.help.agro.core.service.FormService;
 import ua.help.agro.core.service.FormStructureService;
 import ua.help.agro.core.service.FormValueService;
-import ua.help.agro.core.service.FormService;
 import ua.help.agro.core.service.LeafColorService;
 import ua.help.agro.core.service.PlantTypeService;
 import ua.help.agro.core.service.UserService;
@@ -96,13 +96,15 @@ public class AgroHelpCoreApplication {
                     .googleMapsSrc("https://www.google.com/maps/d/u/0/embed?mid=1i8YYFhUJYKf3zNqOhBlHr1iuCyM4wgPd").build();
             fieldService.save(field1);
             fieldService.save(field2);
-
             LeafColor leafColor1 = LeafColor.builder()
-                    .value("SOME HEX VALUE").build();
+                    .value("#000000").build();
             LeafColor leafColor2 = LeafColor.builder()
-                    .value("1111ANOTHER HEX VALUE").build();
+                    .value("#ff0000").build();
+            LeafColor leafColor3 = LeafColor.builder()
+                    .value("#00ff00").build();
             leafColorService.save(leafColor1);
             leafColorService.save(leafColor2);
+            leafColorService.save(leafColor3);
             FormValue formValue1 = FormValue.builder()
                     .plantType(plantType1)
                     .stemLength("1")
@@ -130,47 +132,75 @@ public class AgroHelpCoreApplication {
             formValueService.save(formValue1);
             formValueService.save(formValue2);
             FormStructure formStructure1 = FormStructure.builder()
-                    .fieldName("plant_type")
-                    .fieldNameShown("Plant Type")
-                    .fieldType("String")
+                    .fieldName("plantType")
+                    .fieldNameShown("Вид растения")
+                    .fieldType("select")
                     .isRequired(true)
-                    .value("1").build();
+                    .value("").build();
             FormStructure formStructure2 = FormStructure.builder()
-                    .fieldName("stem length")
-                    .fieldNameShown("Stem length")
-                    .fieldType("String")
+                    .fieldName("stemLength")
+                    .fieldNameShown("Длина стебля")
+                    .fieldType("textInput")
                     .isRequired(true)
-                    .value("1").build();
+                    .value("").build();
             FormStructure formStructure3 = FormStructure.builder()
-                    .fieldName("whatever")
-                    .fieldNameShown("Plant Type")
-                    .fieldType("String")
+                    .fieldName("stemThickness")
+                    .fieldNameShown("Толщина стебля")
+                    .fieldType("textInput")
                     .isRequired(true)
-                    .value("2").build();
+                    .value("").build();
             FormStructure formStructure4 = FormStructure.builder()
-                    .fieldName("etc")
-                    .fieldNameShown("Plant Type")
-                    .fieldType("String")
+                    .fieldName("branchesAmount")
+                    .fieldNameShown("Количество веток")
+                    .fieldType("numericInput")
                     .isRequired(true)
-                    .value("2").build();
+                    .value("").build();
+
             FormStructure formStructure5 = FormStructure.builder()
-                    .fieldName("noone cares for now")
-                    .fieldNameShown("Plant Type")
-                    .fieldType("String")
+                    .fieldName("leafLength")
+                    .fieldNameShown("Длина листа")
+                    .fieldType("textInput")
                     .isRequired(true)
-                    .value("2").build();
+                    .value("").build();
+
             FormStructure formStructure6 = FormStructure.builder()
-                    .fieldName("dunno")
-                    .fieldNameShown("Plant Type")
-                    .fieldType("String")
+                    .fieldName("leafWidth")
+                    .fieldNameShown("Ширина листа")
+                    .fieldType("textInput")
                     .isRequired(true)
-                    .value("2").build();
+                    .value("").build();
+
             FormStructure formStructure7 = FormStructure.builder()
-                    .fieldName("youwot")
-                    .fieldNameShown("Plant Type")
-                    .fieldType("String")
+                    .fieldName("leafColor")
+                    .fieldNameShown("Цвет листа")
+                    .fieldType("colorInput")
                     .isRequired(true)
-                    .value("2").build();
+                    .value("").build();
+
+            FormStructure formStructure8 = FormStructure.builder()
+                    .fieldName("fruitsAmount")
+                    .fieldNameShown("Количество плодов")
+                    .fieldType("numericInput")
+                    .isRequired(true)
+                    .value("").build();
+            FormStructure formStructure9 = FormStructure.builder()
+                    .fieldName("fruitLength")
+                    .fieldNameShown("Длина плода")
+                    .fieldType("textInput")
+                    .isRequired(true)
+                    .value("").build();
+            FormStructure formStructure10 = FormStructure.builder()
+                    .fieldName("sweetness")
+                    .fieldNameShown("Оценка по уровню сладости")
+                    .fieldType("rangeInput")
+                    .isRequired(false)
+                    .value("").build();
+            FormStructure formStructure11 = FormStructure.builder()
+                    .fieldName("note")
+                    .fieldNameShown("Комментарии")
+                    .fieldType("textarea")
+                    .isRequired(false)
+                    .value("").build();
             formStructureService.save(formStructure1);
             formStructureService.save(formStructure2);
             formStructureService.save(formStructure3);
@@ -178,21 +208,31 @@ public class AgroHelpCoreApplication {
             formStructureService.save(formStructure5);
             formStructureService.save(formStructure6);
             formStructureService.save(formStructure7);
+            formStructureService.save(formStructure8);
+            formStructureService.save(formStructure9);
+            formStructureService.save(formStructure10);
+            formStructureService.save(formStructure11);
 
             List<FormStructure> formStructures = new ArrayList<>();
             formStructures.add(formStructure1);
             formStructures.add(formStructure2);
             formStructures.add(formStructure3);
             formStructures.add(formStructure4);
-
+            formStructures.add(formStructure5);
+            formStructures.add(formStructure6);
+            formStructures.add(formStructure7);
+            formStructures.add(formStructure8);
+            formStructures.add(formStructure9);
+            formStructures.add(formStructure10);
+            formStructures.add(formStructure11);
 
             Form form1 = Form.builder()
-                    .formName("Form name1")
+                    .formName("Название формы")
                     .plantType(plantType1)
                     .field(field1)
                     .dueDate(LocalDate.now().plusDays(2))
                     .dateUpdated(LocalDate.now())
-                    .note("This is random shitty note")
+                    .note("Lorem ipsum – псевдо-латинский текст, который используется для веб дизайна, типографии, оборудования, и распечатки вместо английского текста для того, чтобы сделать ударение не на содержание, а на элементы дизайна.")
                     .isAccepted(true)
                     .isCompleted(false)
                     .formValues(formValue1)
@@ -214,10 +254,6 @@ public class AgroHelpCoreApplication {
                     .submittedBy(user2)
                     .build();
             formStructures.clear();
-            formStructures.add(formStructure5);
-            formStructures.add(formStructure6);
-            formStructures.add(formStructure7);
-
             formService.save(form2);
         }
     }
