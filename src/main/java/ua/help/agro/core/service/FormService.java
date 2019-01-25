@@ -42,7 +42,7 @@ public class FormService {
     public List<FormStructure> assign(List<FormStructure> formStructures, FormValue formValue) {
         if (formValue.getPlantType() != null) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("plantType")) e.setValue(formValue.getPlantType().getName());
+                if (e.getFieldName().equals("plantType")) e.setValue(formValue.getPlantType().getValue());
             });
         }
         if (formValue.getStemLength() != null && !formValue.getStemLength().equals("")) {

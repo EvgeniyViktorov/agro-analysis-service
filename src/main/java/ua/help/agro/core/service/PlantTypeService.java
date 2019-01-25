@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.repository.PlantTypeRepository;
 
+import java.util.List;
+
 @Service
 public class PlantTypeService {
     private PlantTypeRepository plantTypeRepository;
@@ -14,5 +16,17 @@ public class PlantTypeService {
 
     public void save(PlantType plantType) {
         plantTypeRepository.save(plantType);
+    }
+
+    public List<PlantType> findAll() {
+        return plantTypeRepository.findAll();
+    }
+
+    public PlantType getPlantTypeById(Long id) {
+        return plantTypeRepository.getOne(id);
+    }
+
+    public void delete(Long id) {
+        plantTypeRepository.deleteById(id);
     }
 }

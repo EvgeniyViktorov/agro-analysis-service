@@ -12,48 +12,48 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.help.agro.core.dto.FormDto;
-import ua.help.agro.core.dto.LeafColorDto;
-import ua.help.agro.core.service.LeafColorService;
+import ua.help.agro.core.dto.PlantTypeDto;
+import ua.help.agro.core.service.PlantTypeService;
 
 @Slf4j
 @RestController
 @RequestMapping(value = "/color",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class LeafColorController {
-    private final LeafColorService leafColorService;
+public class PlantTypeController {
+    
+    private final PlantTypeService plantTypeService;
 
-    public LeafColorController(LeafColorService leafColorService) {
-        this.leafColorService = leafColorService;
+    public PlantTypeController(PlantTypeService plantTypeService) {
+        this.plantTypeService = plantTypeService;
     }
 
     @GetMapping("/all")
     public ResponseEntity<?> all() {
-        return new ResponseEntity<>(leafColorService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(plantTypeService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable String id) {
-        return new ResponseEntity<>(leafColorService.getLeafColorById(Long.parseLong(id)), HttpStatus.OK);
+        return new ResponseEntity<>(plantTypeService.getPlantTypeById(Long.parseLong(id)), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody LeafColorDto leafColor) {
-        leafColorService.save(LeafColorDto.fromDto(leafColor, null));
+    public ResponseEntity<?> add(@RequestBody PlantTypeDto plantType) {
+        plantTypeService.save(PlantTypeDto.fromDto(plantType, null));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody LeafColorDto leafColor) {
-        leafColorService.save(LeafColorDto.fromDto(leafColor, leafColorService.getLeafColorById(leafColor.getId())));
-        leafColorService.getLeafColorById(leafColor.getId());
+    public ResponseEntity<?> update(@RequestBody PlantTypeDto plantType) {
+        plantTypeService.save(PlantTypeDto.fromDto(plantType, plantTypeService.getPlantTypeById(plantType.getId())));
+        plantTypeService.getPlantTypeById(plantType.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(@RequestBody LeafColorDto leafColor) {
-        leafColorService.delete(leafColor.getId());
+    public ResponseEntity<?> delete(@RequestBody PlantTypeDto plantType) {
+        plantTypeService.delete(plantType.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -25,11 +25,9 @@ import java.util.List;
 public class FormDto {
     private Long id;
     private String formName;
-    private PlantType plantType;
     private Field field;
     private LocalDate dueDate;
     private LocalDate dateUpdated;
-    private String note;
     private Boolean isAccepted;
     private Boolean isCompleted;
     private FormValue formValues;
@@ -41,11 +39,9 @@ public class FormDto {
         if (form == null) form = new Form();
         if (formDto.getId() != null) form.setId(formDto.getId());
         if (formDto.getFormName() != null) form.setFormName(formDto.getFormName());
-        if (formDto.getPlantType() != null) form.setPlantType(formDto.getPlantType());
         if (formDto.getField() != null) form.setField(formDto.getField());
         if (formDto.getDueDate() != null) form.setDueDate(formDto.getDueDate());
         if (formDto.getDateUpdated() != null) form.setDateUpdated(formDto.getDateUpdated());
-        if (formDto.getNote() != null) form.setNote(formDto.getNote());
         if (formDto.getIsAccepted() != null) form.setIsAccepted(formDto.getIsAccepted());
         if (formDto.getIsCompleted() != null) form.setIsCompleted(formDto.getIsCompleted());
         if (formDto.getFormValues() != null) form.setFormValues(formDto.getFormValues());

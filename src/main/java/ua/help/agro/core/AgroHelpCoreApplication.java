@@ -70,9 +70,9 @@ public class AgroHelpCoreApplication {
             userService.save(user3);
             userService.save(user4);
             PlantType plantType1 = PlantType.builder()
-                    .name("Weed").build();
+                    .value("Weed").build();
             PlantType plantType2 = PlantType.builder()
-                    .name("Wheat").build();
+                    .value("Wheat").build();
             plantTypeService.save(plantType1);
             plantTypeService.save(plantType2);
             Field field1 = Field.builder()
@@ -136,71 +136,67 @@ public class AgroHelpCoreApplication {
                     .fieldNameShown("Вид растения")
                     .fieldType("select")
                     .isRequired(true)
-                    .value("").build();
+                    .value("" + plantType1.getId()).build();
             FormStructure formStructure2 = FormStructure.builder()
                     .fieldName("stemLength")
                     .fieldNameShown("Длина стебля")
                     .fieldType("textInput")
                     .isRequired(true)
-                    .value("").build();
+                    .value("1").build();
             FormStructure formStructure3 = FormStructure.builder()
                     .fieldName("stemThickness")
                     .fieldNameShown("Толщина стебля")
                     .fieldType("textInput")
                     .isRequired(true)
-                    .value("").build();
+                    .value("1").build();
             FormStructure formStructure4 = FormStructure.builder()
                     .fieldName("branchesAmount")
                     .fieldNameShown("Количество веток")
                     .fieldType("numericInput")
                     .isRequired(true)
-                    .value("").build();
-
+                    .value("1").build();
             FormStructure formStructure5 = FormStructure.builder()
                     .fieldName("leafLength")
                     .fieldNameShown("Длина листа")
                     .fieldType("textInput")
                     .isRequired(true)
-                    .value("").build();
-
+                    .value("1").build();
             FormStructure formStructure6 = FormStructure.builder()
                     .fieldName("leafWidth")
                     .fieldNameShown("Ширина листа")
                     .fieldType("textInput")
                     .isRequired(true)
-                    .value("").build();
-
+                    .value("1").build();
             FormStructure formStructure7 = FormStructure.builder()
                     .fieldName("leafColor")
                     .fieldNameShown("Цвет листа")
                     .fieldType("colorInput")
                     .isRequired(true)
-                    .value("").build();
-
+                    .value("1").build();
             FormStructure formStructure8 = FormStructure.builder()
                     .fieldName("fruitsAmount")
                     .fieldNameShown("Количество плодов")
                     .fieldType("numericInput")
                     .isRequired(true)
-                    .value("").build();
+                    .value("1").build();
             FormStructure formStructure9 = FormStructure.builder()
                     .fieldName("fruitLength")
                     .fieldNameShown("Длина плода")
                     .fieldType("textInput")
                     .isRequired(true)
-                    .value("").build();
+                    .value("1").build();
             FormStructure formStructure10 = FormStructure.builder()
                     .fieldName("sweetness")
                     .fieldNameShown("Оценка по уровню сладости")
                     .fieldType("rangeInput")
                     .isRequired(false)
-                    .value("").build();
+                    .value("1").build();
             FormStructure formStructure11 = FormStructure.builder()
                     .fieldName("note")
                     .fieldNameShown("Комментарии")
                     .fieldType("textarea")
                     .isRequired(false)
-                    .value("").build();
+                    .value("Lorem ipsum – псевдо-латинский текст, который используется для веб дизайна, типографии, оборудования, и распечатки вместо английского текста для того, чтобы сделать ударение не на содержание, а на элементы дизайна.").build();
             formStructureService.save(formStructure1);
             formStructureService.save(formStructure2);
             formStructureService.save(formStructure3);
@@ -228,11 +224,9 @@ public class AgroHelpCoreApplication {
 
             Form form1 = Form.builder()
                     .formName("Название формы")
-                    .plantType(plantType1)
                     .field(field1)
                     .dueDate(LocalDate.now().plusDays(2))
                     .dateUpdated(LocalDate.now())
-                    .note("Lorem ipsum – псевдо-латинский текст, который используется для веб дизайна, типографии, оборудования, и распечатки вместо английского текста для того, чтобы сделать ударение не на содержание, а на элементы дизайна.")
                     .isAccepted(true)
                     .isCompleted(false)
                     .formValues(formValue1)
@@ -242,11 +236,9 @@ public class AgroHelpCoreApplication {
             formService.save(form1);
             Form form2 = Form.builder()
                     .formName("Form name2")
-                    .plantType(plantType2)
                     .field(field2)
                     .dueDate(LocalDate.now().plusDays(5))
                     .dateUpdated(LocalDate.now().minusWeeks(1))
-                    .note("This is random shitty note")
                     .isAccepted(false)
                     .isCompleted(false)
                     .formValues(formValue2)

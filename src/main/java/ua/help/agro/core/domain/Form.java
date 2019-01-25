@@ -31,12 +31,9 @@ public class Form {
     private Long id;
     private String formName;
     @OneToOne
-    private PlantType plantType;
-    @OneToOne
     private Field field;
     private LocalDate dueDate;
     private LocalDate dateUpdated;
-    private String note;
     private Boolean isAccepted;
     private Boolean isCompleted;
     @OneToOne
