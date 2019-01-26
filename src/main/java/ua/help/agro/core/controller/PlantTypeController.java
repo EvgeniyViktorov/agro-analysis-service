@@ -17,7 +17,7 @@ import ua.help.agro.core.service.PlantTypeService;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/color",
+@RequestMapping(value = "/plant",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class PlantTypeController {
