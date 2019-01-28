@@ -63,8 +63,7 @@ public class FormController {
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody FormDto formDto) {
         formService.save(FormDto.fromDto(formDto, formService.getFormById(formDto.getId())));
-        formService.getFormById(formDto.getId());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(formService.getFormById(formDto.getId()), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")

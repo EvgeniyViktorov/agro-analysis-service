@@ -58,6 +58,7 @@ public class FormDto {
                 .dateUpdated(form.getDateUpdated())
                 .isAccepted(form.getIsAccepted())
                 .isCompleted(form.getIsCompleted())
+                .formStructures(form.getFormStructures())
                 .submittedBy(form.getSubmittedBy())
                 .build();
     }
