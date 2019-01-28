@@ -172,7 +172,7 @@ public class AgroHelpCoreApplication {
                     .fieldNameShown("Цвет листа")
                     .fieldType("colorInput")
                     .isRequired(true)
-                    .value("1").build();
+                    .value("" + leafColor1.getId()).build();
             FormStructure formStructure8 = FormStructure.builder()
                     .fieldName("fruitsAmount")
                     .fieldNameShown("Количество плодов")

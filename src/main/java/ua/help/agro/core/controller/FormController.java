@@ -19,6 +19,8 @@ import ua.help.agro.core.dto.FormValueDto;
 import ua.help.agro.core.dto.ResponseMessage;
 import ua.help.agro.core.service.FormService;
 import ua.help.agro.core.service.FormStructureService;
+import ua.help.agro.core.service.LeafColorService;
+import ua.help.agro.core.service.PlantTypeService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,10 +34,14 @@ import java.util.Map;
 public class FormController {
     private final FormService formService;
     private final FormStructureService formStructureService;
+    private final LeafColorService leafColorService;
+    private final PlantTypeService plantTypeService;
 
-    public FormController(FormService formService, FormStructureService formStructureService) {
+    public FormController(FormService formService, FormStructureService formStructureService, LeafColorService leafColorService, PlantTypeService plantTypeService) {
         this.formService = formService;
         this.formStructureService = formStructureService;
+        this.leafColorService = leafColorService;
+        this.plantTypeService = plantTypeService;
     }
 
     @GetMapping("/all")
@@ -50,8 +56,16 @@ public class FormController {
     public ResponseEntity<?> getFormData(@PathVariable String id) {
         Form form = formService.getFormById(Long.parseLong(id));
         List<FormStructure> formStructures = form.getFormStructures();
-        Map<String, String> structuresAndAnswers = new HashMap<>();
-        formStructures.forEach(formStructure -> structuresAndAnswers.put(formStructure.getFieldName(), formStructure.getValue()));
+        Map<Object, Object> structuresAndAnswers = new HashMap<>();
+        formStructures.forEach(formStructure -> {
+            if (formStructure.getFieldName().equals("leafColor")) {
+                structuresAndAnswers.put(formStructure.getFieldName(), leafColorService.getLeafColorById(Long.parseLong(formStructure.getValue())));
+            } else if (formStructure.getFieldName().equals("plantType")) {
+                structuresAndAnswers.put(formStructure.getFieldName(), plantTypeService.getPlantTypeById(Long.parseLong(formStructure.getValue())));
+            } else {
+                structuresAndAnswers.put(formStructure.getFieldName(), formStructure.getValue());
+            }
+        });
         return new ResponseEntity<>(structuresAndAnswers, HttpStatus.OK);
     }
 
