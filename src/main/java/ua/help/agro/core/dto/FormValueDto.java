@@ -19,7 +19,7 @@ import ua.help.agro.core.domain.PlantType;
 @Builder
 public class FormValueDto {
 
-    private Long formId;
+    private Long id;
     private PlantType plantType;
     private String stemLength;
     private String stemThickness;

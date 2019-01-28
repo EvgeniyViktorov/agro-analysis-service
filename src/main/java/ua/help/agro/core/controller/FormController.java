@@ -60,11 +60,11 @@ public class FormController {
     @PostMapping("/assign")
     public ResponseEntity<?> assign(@RequestBody FormValueDto formValueDto) {
         List<FormStructure> structures;
-        Form form = formService.getFormById(formValueDto.getFormId());
+        Form form = formService.getFormById(formValueDto.getId());
         try {
             structures = form.getFormStructures();
         } catch (NullPointerException e) {
-            return new ResponseEntity<>(new ResponseMessage("Form with id " + formValueDto.getFormId() + " does not exist in database. Contact admin."), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseMessage("Form with id " + formValueDto.getId() + " does not exist in database. Contact admin."), HttpStatus.NOT_FOUND);
         }
         FormValue formValue = FormValueDto.fromDto(formValueDto, null);
         List<FormStructure> assignedStructures = formService.assign(structures, formValue);
