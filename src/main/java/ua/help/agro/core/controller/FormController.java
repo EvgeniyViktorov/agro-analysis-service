@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,10 @@ import ua.help.agro.core.dto.ResponseMessage;
 import ua.help.agro.core.service.FormService;
 import ua.help.agro.core.service.FormStructureService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/form",
@@ -36,7 +40,19 @@ public class FormController {
 
     @GetMapping("/all")
     public ResponseEntity<?> all() {
-        return new ResponseEntity<>(formService.findAll(), HttpStatus.OK);
+        List<Form> forms = formService.findAll();
+        List<FormDto> formDtos = new ArrayList<>();
+        forms.forEach(form -> formDtos.add(FormDto.toDtoNoData(form)));
+        return new ResponseEntity<>(formDtos, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getFormData(@PathVariable String id) {
+        Form form = formService.getFormById(Long.parseLong(id));
+        List<FormStructure> formStructures = form.getFormStructures();
+        Map<String, String> structuresAndAnswers = new HashMap<>();
+        formStructures.forEach(formStructure -> structuresAndAnswers.put(formStructure.getFieldName(), formStructure.getValue()));
+        return new ResponseEntity<>(structuresAndAnswers, HttpStatus.OK);
     }
 
     @PostMapping("/add")

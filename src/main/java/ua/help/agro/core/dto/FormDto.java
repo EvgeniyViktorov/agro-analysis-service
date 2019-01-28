@@ -10,7 +10,6 @@ import ua.help.agro.core.domain.Field;
 import ua.help.agro.core.domain.Form;
 import ua.help.agro.core.domain.FormStructure;
 import ua.help.agro.core.domain.FormValue;
-import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.User;
 
 import java.time.LocalDate;
@@ -48,5 +47,17 @@ public class FormDto {
         if (formDto.getFormStructures() != null) form.setFormStructures(formDto.getFormStructures());
         if (formDto.getSubmittedBy() != null) form.setSubmittedBy(formDto.getSubmittedBy());
         return form;
+    }
+
+    public static FormDto toDtoNoData(Form form) {
+        return FormDto.builder()
+                .formName(form.getFormName())
+                .field(form.getField())
+                .dueDate(form.getDueDate())
+                .dateUpdated(form.getDateUpdated())
+                .isAccepted(form.getIsAccepted())
+                .isCompleted(form.getIsCompleted())
+                .submittedBy(form.getSubmittedBy())
+                .build();
     }
 }
