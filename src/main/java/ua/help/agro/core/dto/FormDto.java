@@ -51,6 +51,7 @@ public class FormDto {
 
     public static FormDto toDtoNoData(Form form) {
         return FormDto.builder()
+                .id(form.getId())
                 .formName(form.getFormName())
                 .field(form.getField())
                 .dueDate(form.getDueDate())
