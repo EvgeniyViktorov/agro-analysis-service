@@ -23,13 +23,13 @@ public class FormValueDto {
     private PlantType plantType;
     private String stemLength;
     private String stemThickness;
-    private Integer branchesAmount;
+    private String branchesAmount;
     private String leafLength;
     private String leafWidth;
     private LeafColor leafColor;
-    private Integer fruitsAmount;
+    private String fruitsAmount;
     private String fruitLength;
-    private Integer sweetness;
+    private String sweetness;
     private String note;
 
     public static FormValue fromDto(FormValueDto formValueDto, FormValue formValue) {
@@ -40,15 +40,15 @@ public class FormValueDto {
         if (formValueDto.getStemThickness() != null)
             formValue.setStemThickness(formValueDto.getStemThickness());
         if (formValueDto.getBranchesAmount() != null)
-            formValue.setBranchesAmount(formValueDto.getBranchesAmount());
+            formValue.setBranchesAmount(Integer.parseInt(formValueDto.getBranchesAmount()));
         if (formValueDto.getLeafLength() != null) formValue.setLeafLength(formValueDto.getLeafLength());
         if (formValueDto.getLeafWidth() != null) formValue.setLeafWidth(formValueDto.getLeafWidth());
         if (formValueDto.getLeafColor() != null) formValue.setLeafColor(formValueDto.getLeafColor());
         if (formValueDto.getFruitsAmount() != null)
-            formValue.setFruitsAmount(formValueDto.getFruitsAmount());
+            formValue.setFruitsAmount(Integer.parseInt(formValueDto.getFruitsAmount()));
         if (formValueDto.getFruitLength() != null)
             formValue.setFruitLength(formValueDto.getFruitLength());
-        if (formValueDto.getSweetness() != null) formValue.setSweetness(formValueDto.getSweetness());
+        if (formValueDto.getSweetness() != null) formValue.setSweetness(Integer.parseInt(formValueDto.getSweetness()));
         if (formValueDto.getNote() != null) formValue.setNote(formValueDto.getNote());
         return formValue;
     }
@@ -58,13 +58,13 @@ public class FormValueDto {
                 .plantType(formValue.getPlantType())
                 .stemLength(formValue.getStemLength())
                 .stemThickness(formValue.getStemThickness())
-                .branchesAmount(formValue.getBranchesAmount())
+                .branchesAmount(formValue.getBranchesAmount().toString())
                 .leafLength(formValue.getLeafLength())
                 .leafWidth(formValue.getLeafWidth())
                 .leafColor(formValue.getLeafColor())
-                .fruitsAmount(formValue.getFruitsAmount())
+                .fruitsAmount(formValue.getFruitsAmount().toString())
                 .fruitLength(formValue.getFruitLength())
-                .sweetness(formValue.getSweetness())
+                .sweetness(formValue.getSweetness().toString())
                 .note(formValue.getNote())
                 .build();
     }

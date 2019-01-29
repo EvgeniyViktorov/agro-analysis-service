@@ -102,6 +102,6 @@ public class FormController {
         }
         form.setFormStructures(assignedStructures);
         formService.save(form);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(formService.getFormById(form.getId()), HttpStatus.OK);
     }
 }
