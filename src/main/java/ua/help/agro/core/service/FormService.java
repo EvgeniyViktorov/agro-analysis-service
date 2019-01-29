@@ -41,7 +41,7 @@ public class FormService {
     public List<FormStructure> assign(List<FormStructure> formStructures, FormValue formValue) {
         if (formValue.getPlantType() != null) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("plantType")) e.setValue(formValue.getPlantType().getValue());
+                if (e.getFieldName().equals("plantType")) e.setValue(formValue.getPlantType().getId().toString());
             });
         }
         if (formValue.getStemLength() != null && !formValue.getStemLength().equals("")) {
@@ -71,7 +71,7 @@ public class FormService {
         }
         if (formValue.getLeafColor() != null) {
             formStructures.forEach(e -> {
-                if (e.getFieldName().equals("leafColor")) e.setValue(formValue.getLeafColor().toString());
+                if (e.getFieldName().equals("leafColor")) e.setValue(formValue.getLeafColor().getId().toString());
             });
         }
         if (formValue.getFruitsAmount() != null && formValue.getFruitsAmount() != 0) {
