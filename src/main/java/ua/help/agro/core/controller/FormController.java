@@ -54,19 +54,7 @@ public class FormController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getFormData(@PathVariable String id) {
-        Form form = formService.getFormById(Long.parseLong(id));
-        List<FormStructure> formStructures = form.getFormStructures();
-        Map<Object, Object> structuresAndAnswers = new HashMap<>();
-        formStructures.forEach(formStructure -> {
-            if (formStructure.getFieldName().equals("leafColor")) {
-                structuresAndAnswers.put(formStructure.getFieldName(), leafColorService.getLeafColorById(Long.parseLong(formStructure.getValue())));
-            } else if (formStructure.getFieldName().equals("plantType")) {
-                structuresAndAnswers.put(formStructure.getFieldName(), plantTypeService.getPlantTypeById(Long.parseLong(formStructure.getValue())));
-            } else {
-                structuresAndAnswers.put(formStructure.getFieldName(), formStructure.getValue());
-            }
-        });
-        return new ResponseEntity<>(structuresAndAnswers, HttpStatus.OK);
+        return new ResponseEntity<>(getFormValuesMap(Long.parseLong(id)), HttpStatus.OK);
     }
 
     @PostMapping("/add")
@@ -102,6 +90,22 @@ public class FormController {
         }
         form.setFormStructures(assignedStructures);
         formService.save(form);
-        return new ResponseEntity<>(formService.getFormById(form.getId()), HttpStatus.OK);
+        return new ResponseEntity<>(getFormValuesMap(form.getId()), HttpStatus.OK);
+    }
+
+    private Map<Object, Object> getFormValuesMap(Long id) {
+        Form form = formService.getFormById(id);
+        List<FormStructure> formStructures = form.getFormStructures();
+        Map<Object, Object> structuresAndAnswers = new HashMap<>();
+        formStructures.forEach(formStructure -> {
+            if (formStructure.getFieldName().equals("leafColor")) {
+                structuresAndAnswers.put(formStructure.getFieldName(), leafColorService.getLeafColorById(Long.parseLong(formStructure.getValue())));
+            } else if (formStructure.getFieldName().equals("plantType")) {
+                structuresAndAnswers.put(formStructure.getFieldName(), plantTypeService.getPlantTypeById(Long.parseLong(formStructure.getValue())));
+            } else {
+                structuresAndAnswers.put(formStructure.getFieldName(), formStructure.getValue());
+            }
+        });
+        return structuresAndAnswers;
     }
 }
