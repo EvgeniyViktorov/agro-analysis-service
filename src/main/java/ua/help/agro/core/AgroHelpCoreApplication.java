@@ -55,7 +55,7 @@ public class AgroHelpCoreApplication {
 
         @Override
         public void run(String... args) throws Exception {
-            User user1 = new User("Evgeniy", "Viktorov", "email@evgenitv.com");
+            User user1 = new User("Evgeniy", "Viktorov", "eugeniy.viktorov@gmail.com");
             user1.getUserRoles().add(UserRole.ADMINISTRATOR);
             User user2 = new User("Some", "OtherGuys", "lmaolol@evgenitv.com");
             user2.getUserRoles().add(UserRole.SUPERVISOR);
