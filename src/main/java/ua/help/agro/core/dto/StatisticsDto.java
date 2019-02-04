@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Tolerate;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import ua.help.agro.core.domain.Field;
 import ua.help.agro.core.domain.Form;
 import ua.help.agro.core.service.FormService;
@@ -25,7 +24,7 @@ public class StatisticsDto {
     @JsonIgnore
     private Long fieldId;
     private LocalDate dateUpdated;
-    private Map<Object, Object> formStructuresValues;
+    private Map<Object, Object> formValues;
 
     @JsonIgnore
     private final FormService formService;
@@ -42,7 +41,7 @@ public class StatisticsDto {
                 .builder()
                 .fieldId(field.getId())
                 .dateUpdated(form.getDateUpdated())
-                .formStructuresValues(formService.getFormValuesMap(form.getId()))
+                .formValues(formService.getFormValuesMap(form.getId()))
                 .build()));
         return stats;
     }
