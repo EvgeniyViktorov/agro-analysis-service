@@ -6,16 +6,20 @@ import ua.help.agro.core.domain.FormStructure;
 import ua.help.agro.core.domain.FormValue;
 import ua.help.agro.core.repository.FormRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FormService {
     private final FormRepository formRepository;
-    private final FormStructureService formStructureService;
+    private final LeafColorService leafColorService;
+    private final PlantTypeService plantTypeService;
 
-    public FormService(FormRepository formRepository, FormStructureService formStructureService) {
+    public FormService(FormRepository formRepository, LeafColorService leafColorService, PlantTypeService plantTypeService) {
         this.formRepository = formRepository;
-        this.formStructureService = formStructureService;
+        this.leafColorService = leafColorService;
+        this.plantTypeService = plantTypeService;
     }
 
     public void save(Form form) {
@@ -95,5 +99,21 @@ public class FormService {
             });
         }
         return formStructures;
+    }
+
+    public Map<Object, Object> getFormValuesMap(Long id) {
+        Form form = getFormById(id);
+        List<FormStructure> formStructures = form.getFormStructures();
+        Map<Object, Object> structuresAndAnswers = new HashMap<>();
+        formStructures.forEach(formStructure -> {
+            if (formStructure.getFieldName().equals("leafColor")) {
+                structuresAndAnswers.put(formStructure.getFieldName(), leafColorService.getLeafColorById(Long.parseLong(formStructure.getValue())));
+            } else if (formStructure.getFieldName().equals("plantType")) {
+                structuresAndAnswers.put(formStructure.getFieldName(), plantTypeService.getPlantTypeById(Long.parseLong(formStructure.getValue())));
+            } else {
+                structuresAndAnswers.put(formStructure.getFieldName(), formStructure.getValue());
+            }
+        });
+        return structuresAndAnswers;
     }
 }

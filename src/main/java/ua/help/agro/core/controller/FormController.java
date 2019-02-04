@@ -19,13 +19,9 @@ import ua.help.agro.core.dto.FormValueDto;
 import ua.help.agro.core.dto.ResponseMessage;
 import ua.help.agro.core.service.FormService;
 import ua.help.agro.core.service.FormStructureService;
-import ua.help.agro.core.service.LeafColorService;
-import ua.help.agro.core.service.PlantTypeService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/form",
@@ -34,14 +30,10 @@ import java.util.Map;
 public class FormController {
     private final FormService formService;
     private final FormStructureService formStructureService;
-    private final LeafColorService leafColorService;
-    private final PlantTypeService plantTypeService;
 
-    public FormController(FormService formService, FormStructureService formStructureService, LeafColorService leafColorService, PlantTypeService plantTypeService) {
+    public FormController(FormService formService, FormStructureService formStructureService) {
         this.formService = formService;
         this.formStructureService = formStructureService;
-        this.leafColorService = leafColorService;
-        this.plantTypeService = plantTypeService;
     }
 
     @GetMapping("/all")
@@ -54,7 +46,7 @@ public class FormController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getFormData(@PathVariable String id) {
-        return new ResponseEntity<>(getFormValuesMap(Long.parseLong(id)), HttpStatus.OK);
+        return new ResponseEntity<>(formService.getFormValuesMap(Long.parseLong(id)), HttpStatus.OK);
     }
 
     @PostMapping("/add")
@@ -90,22 +82,8 @@ public class FormController {
         }
         form.setFormStructures(assignedStructures);
         formService.save(form);
-        return new ResponseEntity<>(getFormValuesMap(form.getId()), HttpStatus.OK);
+        return new ResponseEntity<>(formService.getFormValuesMap(form.getId()), HttpStatus.OK);
     }
 
-    private Map<Object, Object> getFormValuesMap(Long id) {
-        Form form = formService.getFormById(id);
-        List<FormStructure> formStructures = form.getFormStructures();
-        Map<Object, Object> structuresAndAnswers = new HashMap<>();
-        formStructures.forEach(formStructure -> {
-            if (formStructure.getFieldName().equals("leafColor")) {
-                structuresAndAnswers.put(formStructure.getFieldName(), leafColorService.getLeafColorById(Long.parseLong(formStructure.getValue())));
-            } else if (formStructure.getFieldName().equals("plantType")) {
-                structuresAndAnswers.put(formStructure.getFieldName(), plantTypeService.getPlantTypeById(Long.parseLong(formStructure.getValue())));
-            } else {
-                structuresAndAnswers.put(formStructure.getFieldName(), formStructure.getValue());
-            }
-        });
-        return structuresAndAnswers;
-    }
+
 }

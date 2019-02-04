@@ -7,10 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import ua.help.agro.core.domain.Field;
+import ua.help.agro.core.domain.Form;
 import ua.help.agro.core.domain.PlantType;
 import ua.help.agro.core.domain.User;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +30,7 @@ public class FieldDto {
     private User creator;
     private Long approximatePlantsAmount;
     private String googleMapsSrc;
+    private List<Form> forms;
 
     public static Field fromDto(FieldDto fieldDto, Field field) {
         if (fieldDto == null) return field;

@@ -247,6 +247,18 @@ public class AgroHelpCoreApplication {
                     .build();
             formStructures.clear();
             formService.save(form2);
+            Form form3 = Form.builder()
+                    .formName("Form three")
+                    .field(field1)
+                    .dueDate(LocalDate.now().plusDays(6))
+                    .dateUpdated(LocalDate.now().plusWeeks(1))
+                    .isAccepted(false)
+                    .isCompleted(false)
+                    .formValues(null)
+                    .formStructures(null)
+                    .submittedBy(user1)
+                    .build();
+            formService.save(form3);
         }
     }
 }
