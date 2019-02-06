@@ -67,8 +67,8 @@ public class AgroHelpCoreApplication {
             user4.getUserRoles().add(UserRole.ADMINISTRATOR);
             user4.setIsVerified(true);
             User user5 = new User("Marina", "TRI", "arrrwork@gmail.com");
-            user3.getUserRoles().add(UserRole.SUPERVISOR);
-            user3.setIsVerified(true);
+            user5.getUserRoles().add(UserRole.SUPERVISOR);
+            user5.setIsVerified(true);
             userService.save(user1);
             userService.save(user2);
             userService.save(user3);
