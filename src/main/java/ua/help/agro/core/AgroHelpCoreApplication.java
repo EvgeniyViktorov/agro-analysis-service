@@ -83,11 +83,11 @@ public class AgroHelpCoreApplication {
             plantTypeService.save(plantType2);
             Field field1 = Field.builder()
                     .number(100001)
-                    .responsible(user1)
+                    .responsible(user2)
                     .sowingDate(LocalDate.now().minusMonths(15))
                     .plant("Weed")
                     .plantType(plantType1)
-                    .creator(user1)
+                    .creator(user2)
                     .approximatePlantsAmount(20000L)
                     .googleMapsSrc("https://www.google.com/maps/d/u/0/embed?mid=1i8YYFhUJYKf3zNqOhBlHr1iuCyM4wgPd").build();
 
