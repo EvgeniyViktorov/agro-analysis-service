@@ -58,8 +58,8 @@ public class AgroHelpCoreApplication {
             User user1 = new User("Evgeniy", "Viktorov", "eugeniy.viktorov@gmail.com");
             user1.setIsVerified(true);
             user1.getUserRoles().add(UserRole.ADMINISTRATOR);
-            User user2 = new User("Some", "OtherGuys", "lmaolol@evgenitv.com");
-            user2.getUserRoles().add(UserRole.SUPERVISOR);
+            User user2 = new User("Some", "OtherGuys", "evgeniy.viktorov.y@gmail.com");
+            user2.getUserRoles().add(UserRole.USER);
             user2.setIsVerified(true);
             User user3 = new User("Marina", "ADIN", "mariina.sou@gmail.com");
             user3.getUserRoles().add(UserRole.USER);
