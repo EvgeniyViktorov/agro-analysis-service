@@ -60,6 +60,7 @@ public class FieldController {
         Field field = fieldService.getFieldById(Long.parseLong(id));
         return new ResponseEntity<>(new StatisticsDto(formService).toDto(field), HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getField(@PathVariable String id) {
         return new ResponseEntity<>(fieldService.getFieldById(Long.parseLong(id)), HttpStatus.OK);

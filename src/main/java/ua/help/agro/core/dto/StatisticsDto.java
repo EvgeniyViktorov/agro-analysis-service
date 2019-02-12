@@ -22,12 +22,11 @@ import java.util.Map;
 public class StatisticsDto {
 
     @JsonIgnore
+    private final FormService formService;
+    @JsonIgnore
     private Long fieldId;
     private LocalDate dateUpdated;
     private Map<Object, Object> formValues;
-
-    @JsonIgnore
-    private final FormService formService;
 
     @Tolerate
     public StatisticsDto(FormService formService) {

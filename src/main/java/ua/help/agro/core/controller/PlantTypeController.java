@@ -21,7 +21,7 @@ import ua.help.agro.core.service.PlantTypeService;
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class PlantTypeController {
-    
+
     private final PlantTypeService plantTypeService;
 
     public PlantTypeController(PlantTypeService plantTypeService) {

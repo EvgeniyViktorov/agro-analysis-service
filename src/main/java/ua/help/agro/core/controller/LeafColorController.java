@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.help.agro.core.dto.FormDto;
 import ua.help.agro.core.dto.LeafColorDto;
 import ua.help.agro.core.service.LeafColorService;
 

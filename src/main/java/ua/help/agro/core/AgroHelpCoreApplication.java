@@ -214,17 +214,17 @@ public class AgroHelpCoreApplication {
             formStructureService.save(formStructure10);
             formStructureService.save(formStructure11);
             List<FormStructure> formStructures1 = new ArrayList<>();
-             formStructures1.add(formStructure1);
-             formStructures1.add(formStructure2);
-             formStructures1.add(formStructure3);
-             formStructures1.add(formStructure4);
-             formStructures1.add(formStructure5);
-             formStructures1.add(formStructure6);
-             formStructures1.add(formStructure7);
-             formStructures1.add(formStructure8);
-             formStructures1.add(formStructure9);
-             formStructures1.add(formStructure10);
-             formStructures1.add(formStructure11);
+            formStructures1.add(formStructure1);
+            formStructures1.add(formStructure2);
+            formStructures1.add(formStructure3);
+            formStructures1.add(formStructure4);
+            formStructures1.add(formStructure5);
+            formStructures1.add(formStructure6);
+            formStructures1.add(formStructure7);
+            formStructures1.add(formStructure8);
+            formStructures1.add(formStructure9);
+            formStructures1.add(formStructure10);
+            formStructures1.add(formStructure11);
             Form form1 = Form.builder()
                     .formName("Название формы 1")
                     .field(field1)
@@ -262,43 +262,43 @@ public class AgroHelpCoreApplication {
                     .fieldType("numericInput")
                     .isRequired(true)
                     .value("2").build();
-             formStructure5 = FormStructure.builder()
+            formStructure5 = FormStructure.builder()
                     .fieldName("leafLength")
                     .fieldNameShown("Длина листа")
                     .fieldType("textInput")
                     .isRequired(true)
                     .value("1").build();
-             formStructure6 = FormStructure.builder()
+            formStructure6 = FormStructure.builder()
                     .fieldName("leafWidth")
                     .fieldNameShown("Ширина листа")
                     .fieldType("textInput")
                     .isRequired(true)
                     .value("1").build();
-             formStructure7 = FormStructure.builder()
+            formStructure7 = FormStructure.builder()
                     .fieldName("leafColor")
                     .fieldNameShown("Цвет листа")
                     .fieldType("colorInput")
                     .isRequired(true)
                     .value("" + leafColor1.getId()).build();
-             formStructure8 = FormStructure.builder()
+            formStructure8 = FormStructure.builder()
                     .fieldName("fruitsAmount")
                     .fieldNameShown("Количество плодов")
                     .fieldType("numericInput")
                     .isRequired(true)
                     .value("5").build();
-             formStructure9 = FormStructure.builder()
+            formStructure9 = FormStructure.builder()
                     .fieldName("fruitLength")
                     .fieldNameShown("Длина плода")
                     .fieldType("textInput")
                     .isRequired(true)
                     .value("3").build();
-             formStructure10 = FormStructure.builder()
+            formStructure10 = FormStructure.builder()
                     .fieldName("sweetness")
                     .fieldNameShown("Оценка по уровню сладости")
                     .fieldType("rangeInput")
                     .isRequired(false)
                     .value("1").build();
-             formStructure11 = FormStructure.builder()
+            formStructure11 = FormStructure.builder()
                     .fieldName("note")
                     .fieldNameShown("Комментарии")
                     .fieldType("textarea")
