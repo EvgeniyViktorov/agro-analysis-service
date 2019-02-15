@@ -1,4 +1,4 @@
-Ukrainian Ministry of Agriculture project.<br />
+Agricultural project.<br />
 Workers in field send froms from devices and this back-end parses jsons and put them into database.<br />
 <br />
 Requirements:<br />
