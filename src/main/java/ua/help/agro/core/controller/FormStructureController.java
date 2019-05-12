@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.help.agro.core.dto.FormStructureDto;
 import ua.help.agro.core.service.FormStructureService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/form/structure",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -25,8 +27,8 @@ public class FormStructureController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addStructure(@RequestBody FormStructureDto formStructureDto) {
-        formStructureService.save(FormStructureDto.fromDto(formStructureDto, null));
+    public ResponseEntity<?> addStructure(@RequestBody List<FormStructureDto> formStructureDto) {
+        formStructureDto.forEach(e -> formStructureService.save(FormStructureDto.fromDto(e, null)));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

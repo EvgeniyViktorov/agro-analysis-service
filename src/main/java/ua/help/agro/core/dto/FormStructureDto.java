@@ -24,7 +24,9 @@ public class FormStructureDto {
 
     public static FormStructure fromDto(FormStructureDto formStructureDto, FormStructure formStructure) {
         if (formStructureDto == null) return formStructure;
-        if (formStructureDto.getId() != null) formStructure.setId(formStructureDto.getId());
+        if (formStructure == null)
+            formStructure = new FormStructure();
+        else if (formStructureDto.getId() != null)  formStructure.setId(formStructureDto.getId());
         if (formStructureDto.getFieldName() != null)
             formStructure.setFieldName(formStructureDto.getFieldName());
         if (formStructureDto.getFieldNameShown() != null)
