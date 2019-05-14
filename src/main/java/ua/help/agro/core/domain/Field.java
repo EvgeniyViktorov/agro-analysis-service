@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,8 @@ public class Field {
     private User creator;
     private Long approximatePlantsAmount;
     private String googleMapsSrc;
-    @OneToMany(mappedBy = "field")
+
+    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Form> forms;
 }

@@ -5,7 +5,9 @@ import ua.help.agro.core.domain.Field;
 import ua.help.agro.core.domain.Form;
 import ua.help.agro.core.domain.FormStructure;
 import ua.help.agro.core.domain.User;
+import ua.help.agro.core.repository.FieldRepository;
 import ua.help.agro.core.repository.FormStructureRepository;
+import ua.help.agro.core.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,14 +15,14 @@ import java.util.List;
 @Service
 public class FormStructureService {
     private FormStructureRepository formStructureRepository;
-    private UserService userService;
-    private FieldService fieldService;
+    private UserRepository userRepository;
+    private FieldRepository fieldRepository;
 
 
-    public FormStructureService(FormStructureRepository formStructureRepository, UserService userService, FieldService fieldService) {
+    public FormStructureService(FormStructureRepository formStructureRepository, UserRepository userRepository, FieldRepository fieldRepository) {
         this.formStructureRepository = formStructureRepository;
-        this.userService = userService;
-        this.fieldService = fieldService;
+        this.userRepository = userRepository;
+        this.fieldRepository = fieldRepository;
     }
 
     public void save(FormStructure formStructure) {
@@ -40,9 +42,10 @@ public class FormStructureService {
     public List<FormStructure> findAll() {
         return formStructureRepository.findAll();
     }
+
     public void saveAndCreate(List<FormStructure> formStructures) {
         formStructures.forEach(e -> formStructureRepository.save(e));
-        User evgeniyViktorov = userService.getUserById(2L);
+        User evgeniyViktorov = userRepository.getUsersByEmailContaining("evgeniy.viktorov.y@gmail.com");
         Form newForm = Form
                 .builder()
                 .formName("ФПрисланая админом форма от " + LocalDate.now().toString())
@@ -53,10 +56,11 @@ public class FormStructureService {
                 .isCompleted(false)
                 .submittedBy(evgeniyViktorov)
                 .build();
-        Field weedField = fieldService.getFieldById(8L);
+        Field weedField = fieldRepository.getOne(8L);
         List<Form> forms = weedField.getForms();
         forms.add(newForm);
+        forms.forEach(e -> e.setField(weedField));
         weedField.setForms(forms);
-        fieldService.save(weedField);
+        fieldRepository.save(weedField);
     }
 }

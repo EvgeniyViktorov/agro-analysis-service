@@ -8,15 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,7 +34,7 @@ public class Form {
     private Boolean isCompleted;
     @OneToOne
     private FormValue formValues;
-    @ElementCollection(targetClass = FormStructure.class)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<FormStructure> formStructures;
     @OneToOne
     private User submittedBy;
