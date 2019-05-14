@@ -23,24 +23,8 @@ public class FormStructureService {
         this.fieldService = fieldService;
     }
 
-    public void save(List<FormStructure> formStructure) {
-        formStructure.forEach(e -> formStructureRepository.save(e));
-        User evgeniyViktorov = userService.getUserById(2L);
-        Form newForm = Form
-                .builder()
-                .formName("ФПрисланая админом форма от " + LocalDate.now().toString())
-                .formStructures(formStructure)
-                .dateUpdated(LocalDate.now())
-                .dueDate(LocalDate.now().plusDays(7))
-                .isAccepted(true)
-                .isCompleted(false)
-                .submittedBy(evgeniyViktorov)
-                .build();
-        Field weedField = fieldService.getFieldById(8L);
-        List<Form> forms = weedField.getForms();
-        forms.add(newForm);
-        weedField.setForms(forms);
-        fieldService.save(weedField);
+    public void save(FormStructure formStructure) {
+        formStructureRepository.save(formStructure);
     }
 
     public FormStructure getFormFieldStructureById(Long id) {
@@ -56,5 +40,23 @@ public class FormStructureService {
     public List<FormStructure> findAll() {
         return formStructureRepository.findAll();
     }
-
+    public void saveAndCreate(List<FormStructure> formStructures) {
+        formStructures.forEach(e -> formStructureRepository.save(e));
+        User evgeniyViktorov = userService.getUserById(2L);
+        Form newForm = Form
+                .builder()
+                .formName("ФПрисланая админом форма от " + LocalDate.now().toString())
+                .formStructures(formStructures)
+                .dateUpdated(LocalDate.now())
+                .dueDate(LocalDate.now().plusDays(7))
+                .isAccepted(true)
+                .isCompleted(false)
+                .submittedBy(evgeniyViktorov)
+                .build();
+        Field weedField = fieldService.getFieldById(8L);
+        List<Form> forms = weedField.getForms();
+        forms.add(newForm);
+        weedField.setForms(forms);
+        fieldService.save(weedField);
+    }
 }

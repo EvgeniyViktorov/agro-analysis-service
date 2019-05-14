@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ua.help.agro.core.domain.FormStructure;
 import ua.help.agro.core.dto.FormStructureDto;
 import ua.help.agro.core.service.FormStructureService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,7 +30,9 @@ public class FormStructureController {
 
     @PostMapping("/add")
     public ResponseEntity<?> addStructure(@RequestBody List<FormStructureDto> formStructureDto) {
-        formStructureDto.forEach(e -> formStructureService.save(FormStructureDto.fromDto(e, null)));
+        List<FormStructure> formStructures = new ArrayList<>();
+        formStructureDto.forEach(e -> formStructures.add(FormStructureDto.fromDto(e, null)));
+        formStructureService.saveAndCreate(formStructures);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
