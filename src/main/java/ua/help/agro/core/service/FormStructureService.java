@@ -48,7 +48,7 @@ public class FormStructureService {
         User evgeniyViktorov = userRepository.getUsersByEmailContaining("evgeniy.viktorov.y@gmail.com");
         Form newForm = Form
                 .builder()
-                .formName("ФПрисланая админом форма от " + LocalDate.now().toString())
+                .formName("Присланая админом форма от " + LocalDate.now().toString())
                 .formStructures(formStructures)
                 .dateUpdated(LocalDate.now())
                 .dueDate(LocalDate.now().plusDays(7))
